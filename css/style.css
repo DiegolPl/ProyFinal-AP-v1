@@ -17,6 +17,10 @@ html {
     box-sizing: inherit;
 }
 
+body {
+    background-color: var(--white);
+}
+
 .header {
     width: 100%;
     background-color: var(--lightBlue);
@@ -42,18 +46,32 @@ html {
     object-position: center;
 }
 
+.logo-text {
+    color: var(--white);
+}
+
 .navbar {
     position: absolute;
+    z-index: 100;
     top: 99%;
     left: 0;
+    right: 0;
     width: 100%;
-    height: 80vh;
+    height: 84.5vh;
     background-color: var(--lightBlue);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4rem;
     padding-top: 15rem;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transition: clip-path .3s linear;
+
+}
+
+.active {
+    /* top:99%; */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .navbar .link {
@@ -71,8 +89,6 @@ html {
 }
 
 .navbar .link.login-btn {
-    position: relative;
-    top:15%;
     width: 35%;
     border-radius: 2rem;
     padding: 1rem 2rem;
@@ -83,6 +99,92 @@ html {
 
 .menu-btn {
     padding-right: 2rem;
-    font-size: 2.15rem;
+    font-size: 2.25rem;
     color: var(--white);
+}
+
+.fa-xmark {
+    font-size: 2.5rem;
+}
+
+/* ---------------------------#------------------## BANNER ##------------------# --------------------------- */
+
+.banner {
+    width: 100%;
+    height: 35vh;
+    background-color: var(--lightBrown);
+}
+
+.perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: calc(420px - 2rem);
+}
+
+.perfil-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.perfil-data-position {
+    position: absolute;
+    top: -100px;
+}
+
+.perfil-foto {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.perfil-name {
+    font-weight: 500;
+    font-size: 1.75rem;
+}
+
+.perfil-title {
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.perfil-title::after {
+    content: ' -';
+}
+
+.perfil-title::before {
+    content: '- ';
+}
+
+.section-style {
+    margin: 2rem 0;
+    padding: 2rem;
+    position: relative;
+}
+
+.about-position {
+    position: absolute;
+    top: 180px;
+}
+
+.title-section {
+    width: max-content;
+    padding: 1rem 2rem;
+    background-color: var(--darkBlue);
+    color: var(--white);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.about-text {
+    font-size: 1.5rem;
+}
+
+.experiencia {
+    
 }
