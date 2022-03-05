@@ -244,6 +244,10 @@ body {
     font-weight: 400;
 }
 
+.mini-h4 {
+    font-size: 1.1rem;
+}
+
 .skill-bar-bg {
     width: 100%;
     height: 12px;
@@ -306,4 +310,104 @@ body {
     display: grid;
     place-items: center;
     font-size: 1.3rem;
+}
+
+@media (min-width:567px){
+
+    .perfil {
+        height: calc(390px - 2rem);
+    }
+    
+    .section-style {
+        padding: 2rem 4rem;
+    }
+
+    .hys .box-seccion {
+        width: 95%;
+    }
+    
+}
+
+@media (min-width:768px){
+
+    .section-style {
+        padding: 2rem 8rem;
+    }
+
+    .container-seccion {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .container-seccion .box-seccion:nth-child(1){
+        order: 1;
+    }
+
+    .container-seccion .box-seccion:nth-child(2){
+        order: 3;
+    }
+
+    .container-seccion .box-seccion:nth-child(3){
+        order: 5;
+    }
+
+    .container-seccion .box-seccion:nth-child(4){
+        order: 7;
+    }
+
+    .container-seccion .box-seccion:nth-child(5){
+        order: 9;
+    }
+
+    .container-seccion .box-seccion:nth-child(6){
+        order: 11;
+    }
+    
+    .container-seccion .box-seccion:nth-child(7){
+        order: 2;
+    }
+
+    .container-seccion .box-seccion:nth-child(8){
+        order: 4;
+    }
+
+    .container-seccion .box-seccion:nth-child(9){
+        order: 6;
+    }
+
+    .container-seccion .box-seccion:nth-child(10){
+        order: 8;
+    }
+
+    .container-seccion .box-seccion:nth-child(11){
+        order: 10;
+    }
+
+    .box-seccion h3 {
+        font-size: 1.8rem;
+    }
+
+    .box-seccion .box-lado-izq h3 {
+        font-size: 1.5rem;
+    }
+
+    .box-seccion .box-lado-izq span {
+        font-size: 1.25rem;
+    }
+
+    .box-seccion h4 {
+        font-size: 1.35rem;
+    }
+
+    .mini-h4 {
+        font-size: 1.3rem;
+    }
+
+    .hys .box-seccion {
+        grid-template-columns: 2fr 4fr;
+    }
+
+    .proyectos .container-seccion {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
 }
