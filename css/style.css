@@ -453,7 +453,7 @@ body {
     }
 
     .navbar .link {
-        margin: 2rem 1rem;
+        margin: 1rem;
         padding: 1rem 1rem;
         font-size: 2.35rem;
     }
@@ -471,5 +471,18 @@ body {
     
     .header i#menu-btn {
         display: none;
+    }
+
+    .perfil {
+        height: 250px;
+    }
+
+    .perfil-data-position {
+        left: 10%;
+    }
+
+    .about-position {
+        top: 25%;
+        left: 30%;
     }
 }
