@@ -410,4 +410,66 @@ body {
         grid-template-columns: repeat(3, 1fr);
     }
     
+
+    .header {
+        padding: 0 .5rem;
+    }
+
+    .logo-text {
+        font-size: 1.35rem;
+    }
+    
+    .logo-img {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    .navbar {
+        position: relative;
+        z-index: 100;
+        width: max-content;
+        top: initial;
+        left: initial;
+        right: initial;
+        width: initial;
+        height: initial;
+        background-color: transparent;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0;
+        padding-top: 0;
+        clip-path: initial;
+        transition: none;
+    }
+    
+    .navbar .link.login-btn {
+        font-weight: 400;
+        padding: 1rem 1rem;
+        width: 35%;
+        border-radius: 50%;
+
+    }
+
+    .navbar .link {
+        margin: 2rem 1rem;
+        padding: 1rem 1rem;
+        font-size: 2.35rem;
+    }
+
+    .navbar .link:hover {
+        padding: 1rem 1rem;
+        border-radius: 50%;
+        background-color: var(--white);
+        color: var(--darkBlue);
+    }
+
+    .link-name {
+        display: none;
+    }
+    
+    .header i#menu-btn {
+        display: none;
+    }
 }
