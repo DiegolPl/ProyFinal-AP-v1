@@ -261,8 +261,8 @@ body {
 
 .card-proyecto {
     margin: 2rem auto;
-    width: 80%;
-    height: 370px;
+    width: 75%;
+    height: 390px;
     text-decoration: none;
     display: flex;
     flex-direction: column;
@@ -271,6 +271,12 @@ body {
     color: var(--darkBlue);
     box-shadow: 0 0 5px #1115;
     border-radius: 1rem;
+    transition: all .2s ease;
+}
+
+.card-proyecto:hover {
+    box-shadow: 0 0 10px #1117;
+    transform: scale(1.05);
 }
 
 .card-top {
@@ -290,7 +296,7 @@ body {
 
 .card-bottom {
     padding: 1rem 2rem;
-    height: 150px;
+    height: 170px;
 }
 
 .card-title {
