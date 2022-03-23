@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Final - Argentina Programa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" integrity="sha512-8Vtie9oRR62i7vkmVUISvuwOeipGv8Jd+Sur/ORKDD5JiLgTGeBSkI3ISOhc730VGvA5VVQPwKIKlmi+zMZ71w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    
+    <header class="header">
+        <div class="logo">
+            <img src="media/logo-argpro-v4.png" alt="Logo Argentina Programa" class="logo-img">
+            <div class="logo-text">
+                <h2>Argentina Programa</h2>
+                <h3>#YoProgramo</h3>
+            </div>
+        </div>
+        <nav class="navbar swap" id="menu-navbar">
+            
+            <a href="#" class="link">
+                <i class="fa-brands fa-github"></i>
+                <p class="link-name">Github</p>
+            </a>
+            <a href="#" class="link">
+                <i class="fa-brands fa-twitter"></i>
+                <p class="link-name">Twitter</p>
+            </a>
+            <a href="#" class="link">
+                <i class="fa-brands fa-instagram"></i>
+                <p class="link-name">Instagram</p>
+            </a>
+            <a class="link login-btn" id="btn-login">
+                <i class="fa-solid fa-user"></i>
+                <p class="link-name">Login</p>
+            </a>
+        </nav>
+        <i class="fa-solid fa-bars menu-btn" id="menu-btn"></i><!-- <i class="fa-solid fa-xmark"></i> se debe cambiar por ese al abrir el menu en modo movil -->
+    </header>
+<!-- <div class="modal-container"> </div>-->
+    <div class="modal-ventana" id="modal-login">
+        <form novalidate class="form-login">
+            <i class="fa-solid fa-xmark modal-close-btn" id="modal-close-btn"></i>
+            <h2 class="form-login-title">Bienvenido!</h2>
+            <div class="modal-box user-box">
+                <input type="text" name="usuario" id="user-input" class="input-login">
+                <label for="user-input" id="label-login-user" class="label-login">Usuario</label>
+            </div>
+            <div class="modal-box user-box">
+                <input type="password" name="password" id="pass-input" class="input-login">
+                <label for="pass-input" id="label-login-pass" class="label-login">Contraseña</label>
+            </div>
+            <input type="button" value="Ingresar" class="form-login-btn">
+        </form>
+    </div>
+    
+
+    <div class="banner"></div>
+
+    <section class="perfil">
+        <article class="perfil-data perfil-data-position">
+            <img src="media/pexels-thiago.jpg" alt="" class="perfil-foto">
+            <h2 class="perfil-name">Pedro Alejandro Jesus de Leon</h2>
+            <h1 class="perfil-title">Web Developer</h1>
+        </article>
+        <section class="about about-position section-style">
+            <h2 class="title-section">acerca de mi</h2>
+            <p class="about-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores accusantium voluptate autem quas nemo, cupiditate excepturi? Consectetur fuga ipsum, aliquam eligendi eum officia esse nam impedit rerum. Aliquid, reprehenderit soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis officiis provident, amet quaerat deleniti quo.</p>
+        </section>
+    </section>
+    <section class="experiencia section-style">
+        <h2 class="title-section">experiencia</h2>
+        <section class="container-seccion">
+            <div class="box-seccion">
+                <div class="box-lado-izq">
+                    <h3>2020 - 2021</h3>
+                    <h4>Empresa Ejemplo 1</h4>
+                </div>
+                <div class="box-lado-dcho">
+                    <h3>Cargo desarrollado</h3>
+                    <h4>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore illo consectetur ipsum, voluptatibus reprehenderit quae?</h4>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <div class="box-lado-izq">
+                    <h3>2020 - 2021</h3>
+                    <h4>Empresa Ejemplo 1</h4>
+                </div>
+                <div class="box-lado-dcho">
+                    <h3>Cargo desarrollado</h3>
+                    <h4>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore illo consectetur ipsum, voluptatibus reprehenderit quae?</h4>
+                </div>
+            </div>
+        </section>
+    </section>
+    <section class="educacion section-style">
+        <h2 class="title-section">educacion</h2>
+        <section class="container-seccion">
+            <div class="box-seccion">
+                <div class="box-lado-izq">
+                    <h3>2022-<span>PRESENTE</span></h3>
+                    <h4>Argentina Programa</h4>
+                </div>
+                <div class="box-lado-dcho">
+                    <h3>Argentina Programa: #YoProgramo</h3>
+                    <h4>Lenguajes vistos: HTML, CSS, JAVASCRIPT, ANGULAR, MySQL, JAVA</h4>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <div class="box-lado-izq">
+                    <h3>2021-<span>PRESENTE</span></h3>
+                    <h4 class="mini-h4">freecodecamp.org</h4>
+                </div>
+                <div class="box-lado-dcho">
+                    <h3>Curso JavaScript Algoritmos y Estructura 
+                        de Datos</h3>
+                    <h4>Lenguajes vistos: JAVASCRIPT</h4>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <div class="box-lado-izq">
+                    <h3>2021</h3>
+                    <h4>Argentina Programa</h4>
+                </div>
+                <div class="box-lado-dcho">
+                    <h3>Argentina Programa: #SéProgramar</h3>
+                    <h4>Lenguajes vistos: GOBSTONE, JAVASCRIPT, RUBY</h4>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <div class="box-lado-izq">
+                    <h3>2021</h3>
+                    <h4>Polo TIC Misiones</h4>
+                </div>
+                <div class="box-lado-dcho">
+                    <h3>Curso Introducción a la programación</h3>
+                    <h4>Lenguajes vistos: PSEUDO-CODIGO</h4>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <div class="box-lado-izq">
+                    <h3>2021</span></h3>
+                    <h4>Linkedin Learning</h4>
+                </div>
+                <div class="box-lado-dcho">
+                    <h3>Curso Github para programadores</h3>
+                    <h4>GIT - Github</h4>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <div class="box-lado-izq">
+                    <h3>2021</span></h3>
+                    <h4>Linkedin Learning</h4>
+                </div>
+                <div class="box-lado-dcho">
+                    <h3>Curso MySQL Esencial</h3>
+                    <h4>Lenguajes vistos: MySQL</h4>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <div class="box-lado-izq">
+                    <h3>2021</h3>
+                    <h4>Linkedin Learning</h4>
+                </div>
+                <div class="box-lado-dcho">
+                    <h3>Curso JavaScript*</h3>
+                    <h4>Lenguajes vistos: JAVASCRIPT</h4>
+                    <h4>*Cursos: Javascript esencial, Javascript Avanzado: buenas practicas y Javascript Avanzado: expresiones regulares</h4>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <div class="box-lado-izq">
+                    <h3>2021</h3>
+                    <h4>Fundación Telefónica Movistar - Conecta Empleo</h4>
+                </div>
+                <div class="box-lado-dcho">
+                    <h3>Curso Programación con Javascript</h3>
+                    <h4>Lenguajes vistos: JAVASCRIPT</h4>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <div class="box-lado-izq">
+                    <h3>2021</span></h3>
+                    <h4>Fundación Telefónica Movistar - Conecta Empleo</h4>
+                </div>
+                <div class="box-lado-dcho">
+                    <h3>Curso Diseño Web con HTML5 y CSS</h3>
+                    <h4>Lenguajes vistos: HTML, CSS</h4>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <div class="box-lado-izq">
+                    <h3>2021</h3>
+                    <h4>Fundación Telefónica Movistar - Conecta Empleo</h4>
+                </div>
+                <div class="box-lado-dcho">
+                    <h3>Curso Introducción a la Programación</h3>
+                    <h4></h4>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <div class="box-lado-izq">
+                    <h3>2021</h3>
+                    <h4 class="mini-h4">freecodecamp.org</h4>
+                </div>
+                <div class="box-lado-dcho">
+                    <h3>Curso Responsive Web Design</h3>
+                    <h4>Lenguajes vistos: HTML, CSS</h4>
+                </div>
+            </div>
+        </section>
+    </section>
+    <section class="hys section-style">
+        <h2 class="title-section">Hard & Soft Skills</h2>
+        <section class="container-seccion">
+            <div class="box-seccion">
+                <h3 class="skill-name">HTML</h3>
+                <div class="skill-box">
+                    <div class="skill-bar-bg"><div class="skill-bar" style="width: 90%;"></div></div>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <h3 class="skill-name">CSS</h3>
+                <div class="skill-box">
+                    <div class="skill-bar-bg"><div class="skill-bar" style="width: 80%;"></div></div>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <h3 class="skill-name">JAVASCRIPT</h3>
+                <div class="skill-box">
+                    <div class="skill-bar-bg"><div class="skill-bar" style="width: 60%;"></div></div>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <h3 class="skill-name">MySQL</h3>
+                <div class="skill-box">
+                    <div class="skill-bar-bg"><div class="skill-bar" style="width: 30%;"></div></div>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <h3 class="skill-name">GIT</h3>
+                <div class="skill-box">
+                    <div class="skill-bar-bg"><div class="skill-bar" style="width: 50%;"></div></div>
+                </div>
+            </div>
+            <div class="box-seccion">
+                <h3 class="skill-name">INGLES</h3>
+                <div class="skill-box">
+                    <div class="skill-bar-bg"><div class="skill-bar" style="width: 45%;"></div></div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <section class="proyectos section-style">
+        <h2 class="title-section">Proyectos</h2>
+        <div class="container-seccion">
+            <a href="#" class="card-proyecto">
+                <div class="card-top">
+                    <img src="media/pexels-1.jpg" alt="" class="card-img">
+                </div>
+                <div class="card-bottom">
+                    <h3 class="card-title">Titulo Proyecto 1 <span>- 2022</span></h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia fuga consequatur cum corrupti itaque iure.</p>
+                </div>
+            </a>
+            <a href="#" class="card-proyecto">
+                <div class="card-top">
+                    <img src="media/pexels-2.jpg" alt="" class="card-img">
+                </div>
+                <div class="card-bottom">
+                    <h3 class="card-title">Titulo Proyecto 2 <span>- 2021</span></h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia fuga consequatur cum corrupti itaque iure.</p>
+                </div>
+            </a>
+            <a href="#" class="card-proyecto">
+                <div class="card-top">
+                    <img src="media/pexels-3.jpg" alt="" class="card-img">
+                </div>
+                <div class="card-bottom">
+                    <h3 class="card-title">Titulo Proyecto 3 <span>- 2021</span></h3>
+                    <p class="card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia fuga consequatur cum corrupti itaque iure.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+    <footer class="footer">
+        <p class="copy">&copy; 2022 - Diego.web - Todos los derechos reservados</p>
+    </footer>
+
+
+
+
+
+
+
+    <script src="js/app.js"></script>
+</body>
+</html>
