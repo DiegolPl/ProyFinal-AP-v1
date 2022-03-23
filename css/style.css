@@ -118,6 +118,7 @@ body {
     width: 100%;
     height: 100vh;
     background-color: #1119;
+    backdrop-filter: blur(.15rem);
 }
 
 .modal-ventana-active {
@@ -138,6 +139,8 @@ body {
     justify-content: center;
     align-items: center;
     gap: 3rem;
+    box-shadow: .5rem .5rem 2rem #1117;
+
 }
 
 .modal-close-btn {
@@ -173,7 +176,7 @@ body {
     border: none;
     border-bottom: 3px solid var(--darkBlue);
     outline: none;
-    padding: 2.5rem 1rem .75rem;
+    padding: 2.5rem 2.4rem .75rem;
     background-color: transparent;
     color: var(--white);
 }
@@ -560,7 +563,7 @@ body {
         padding: 1rem 1rem;
         width: 35%;
         border-radius: 50%;
-
+        cursor: pointer;
     }
 
     .navbar .link {
@@ -596,4 +599,20 @@ body {
         top: 25%;
         left: 30%;
     }
+
+    .modal-ventana {
+        backdrop-filter: blur(.3rem);
+    }
+
+    .form-login {
+        --darkBlue:#12435e;
+        --lightBlue:#2a6588;
+        position: relative;
+        width: 40%;
+        min-height: 400px;
+        padding: 5rem 5rem;
+        /* border: 1px solid #111; */
+        background-image: linear-gradient(40deg, var(--lightBlue) 30%, var(--darkBlue) 70%);
+    }
+    
 }
