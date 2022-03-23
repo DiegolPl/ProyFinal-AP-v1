@@ -36,13 +36,30 @@
                 <i class="fa-brands fa-instagram"></i>
                 <p class="link-name">Instagram</p>
             </a>
-            <a href="#" class="link login-btn">
+            <a class="link login-btn" id="btn-login">
                 <i class="fa-solid fa-user"></i>
                 <p class="link-name">Login</p>
             </a>
         </nav>
         <i class="fa-solid fa-bars menu-btn" id="menu-btn"></i><!-- <i class="fa-solid fa-xmark"></i> se debe cambiar por ese al abrir el menu en modo movil -->
     </header>
+<!-- <div class="modal-container"> </div>-->
+    <div class="modal-ventana" id="modal-login">
+        <form novalidate class="form-login">
+            <i class="fa-solid fa-xmark modal-close-btn" id="modal-close-btn"></i>
+            <h2 class="form-login-title">Bienvenido!</h2>
+            <div class="modal-box user-box">
+                <input type="text" name="usuario" id="user-input" class="input-login">
+                <label for="user-input" id="label-login-user" class="label-login">Usuario</label>
+            </div>
+            <div class="modal-box user-box">
+                <input type="password" name="password" id="pass-input" class="input-login">
+                <label for="pass-input" id="label-login-pass" class="label-login">Contraseña</label>
+            </div>
+            <input type="button" value="Ingresar" class="form-login-btn">
+        </form>
+    </div>
+    
 
     <div class="banner"></div>
 
