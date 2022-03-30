@@ -52,7 +52,7 @@ body {
 
 .navbar {
     position: absolute;
-    z-index: 100;
+    z-index: 95000;
     top: 99%;
     left: 0;
     right: 0;
@@ -215,6 +215,48 @@ body {
     cursor: pointer;
 }
 
+/* ---------------------------#------------------## EDIT ##------------------# --------------------------- */
+
+.form-edit .modal-box-edit {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.modal-box-edit label {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+
+.modal-box-edit input[type="text"] {
+    border: none;
+    border-bottom: 3px solid var(--darkBlue);
+    outline: none;
+    color: var(--white);
+    background-color: transparent;
+    font-size: 1.8rem;
+}
+
+.form-edit .modal-box-edit-textarea {
+    display: flex;
+    gap: .5rem;
+    flex-direction: column;
+}
+
+.modal-box-edit textarea {
+    resize: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 150px;
+    border: 3px solid var(--darkBlue);
+    outline: none;
+    color: var(--darkBlue);
+    background-color: var(--lightBrown);
+    font-size: 1.5rem;
+    padding: .75rem;
+}
+
+
 /* ---------------------------#------------------## BANNER ##------------------# --------------------------- */
 
 .banner {
@@ -224,6 +266,7 @@ body {
 }
 
 .perfil {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -242,6 +285,49 @@ body {
 .perfil-data-position {
     position: absolute;
     top: -100px;
+}
+
+.edit-btn {
+    position: absolute;
+    transform: translateY(-50%);
+    right: 5%;
+    z-index: 90000;
+    font-size: 2.5rem;
+    color: #048808;
+    background-color: transparent;
+    border: 3px solid #048808;
+    padding: .4rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #8df791;
+}
+
+.perfil > .edit-btn{
+    top: 30%;
+    
+}
+
+.about > .edit-btn {
+    top: 17.5%;
+}
+
+.experiencia > .edit-btn {
+    top: 12%;
+}
+
+.educacion > .edit-btn {
+    top: 3.5%;
+}
+
+.hys > .edit-btn {
+    top: 8.75%;
+}
+
+.proyectos > .edit-btn {
+    top: 2.75%;
 }
 
 .perfil-foto {
@@ -287,6 +373,7 @@ body {
     color: var(--white);
     text-transform: uppercase;
     margin-bottom: 2rem;
+    /* position: relative; */
 }
 
 .about-text {
@@ -615,4 +702,33 @@ body {
         background-image: linear-gradient(40deg, var(--lightBlue) 30%, var(--darkBlue) 70%);
     }
     
+    .perfil > .edit-btn{
+        top: 47.5%;
+        left: 5%;
+        right: initial;
+    }
+    
+    .about > .edit-btn {
+        top: 17.5%;
+    }
+    
+    .experiencia > .edit-btn {
+        top: 18%;
+        right: 3.5%;
+    }
+    
+    .educacion > .edit-btn {
+        top: 5.5%;
+        right: 3.5%;
+    }
+    
+    .hys > .edit-btn {
+        top: 17%;
+        right: 3.5%;
+    }
+    
+    .proyectos > .edit-btn {
+        top: 7.5%;
+        right: 3.5%;
+    }
 }

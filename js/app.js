@@ -1,3 +1,8 @@
+
+
+// ---------------------------------------------- NAVBAR ----------------------------------------------
+
+
 let btnMenu = document.getElementById('menu-btn');
 let menuNavbar = document.getElementById('menu-navbar');
 
@@ -7,9 +12,14 @@ btnMenu.addEventListener('click', ()=> {
     menuNavbar.classList.toggle('active');
 })
 
+// ---------------------------------------------- LOGIN - MODAL ----------------------------------------------
+
+
 let btnLogin = document.getElementById('btn-login');
 let modalLogin = document.getElementById('modal-login');
 let btnModalClose = document.getElementById('modal-close-btn');
+let inputUser = document.getElementById('user-input');
+let inputPass = document.getElementById('pass-input');
 
 btnLogin.addEventListener('click', ()=> {
     modalLogin.classList.toggle('modal-ventana-active');
@@ -25,9 +35,6 @@ btnModalClose.addEventListener('click',()=> {
     document.getElementById('label-login-user').classList.remove('label-top');
     document.getElementById('label-login-pass').classList.remove('label-top');
 })
-
-let inputUser = document.getElementById('user-input');
-let inputPass = document.getElementById('pass-input');
 
 inputUser.addEventListener('keyup',()=>{
     console.log(inputUser.value.length);
@@ -47,3 +54,89 @@ inputPass.addEventListener('keyup',()=>{
     }
 })
 
+
+// ---------------------------------------------- PERFIL ----------------------------------------------
+
+// EDIT BTNS
+let btnEditPerfil = document.getElementById('btn-edit-perfil');
+let btnEditPerfilClose = document.getElementById('btn-edit-perfil-close');
+let btnEditPerfilUpgrade = document.getElementById('edit-perfil-btn');
+
+// EDIT MODALS
+let modalEditPerfil = document.getElementById('modal-edit-perfil');
+
+
+// EDIT AEListeners
+btnEditPerfil.addEventListener('click', ()=>{
+    modalEditPerfil.classList.toggle('modal-ventana-active');
+})
+btnEditPerfilClose.addEventListener('click',()=> {
+    modalEditPerfil.classList.toggle('modal-ventana-active');
+    
+})
+
+// INPUTS
+let inputEditPerfilImg = document.getElementById('edit-perfil-input-img');
+let inputEditPerfilName = document.getElementById('edit-perfil-input-name');
+let inputEditPerfilTitle = document.getElementById('edit-perfil-input-title');
+
+// Valor inicial de inputs
+inputEditPerfilName.value = document.getElementById('perfil-name').innerText;
+inputEditPerfilTitle.value = document.getElementById('perfil-title').innerText;
+
+// Funcion upgrade
+btnEditPerfilUpgrade.addEventListener('click',()=>{
+    
+    if(inputEditPerfilImg.value){
+        let valorInputImg = String(inputEditPerfilImg.value);
+        let lastSlashInputImg = valorInputImg.lastIndexOf('\\');    //Index del ultimo \
+        let lastSlashSrcImgActual = String(document.getElementById('perfil-foto').src).lastIndexOf('/');
+        let newSrcParteUno = String(document.getElementById('perfil-foto').src).slice(0, lastSlashSrcImgActual + 1);
+        let newSrcParteDos = valorInputImg.slice(lastSlashInputImg + 1, valorInputImg.length);
+        let newSrc = newSrcParteUno + newSrcParteDos;
+        
+        document.getElementById('perfil-foto').src = newSrc;
+    }
+    document.getElementById('perfil-name').innerHTML = inputEditPerfilName.value;
+    document.getElementById('perfil-title').innerHTML = inputEditPerfilTitle.value;
+
+    //Cerrar modal al upgradear
+    modalEditPerfil.classList.toggle('modal-ventana-active');
+
+})
+
+// ---------------------------------------------- PERFIL ----------------------------------------------
+
+// EDIT BTNS
+let btnEditAbout = document.getElementById('btn-edit-about');
+let btnEditAboutClose = document.getElementById('btn-edit-about-close');
+let btnEditAboutUpgrade = document.getElementById('edit-about-btn');
+
+// EDIT MODALS
+let modalEditAbout = document.getElementById('modal-edit-about');
+
+
+// EDIT AEListeners
+btnEditAbout.addEventListener('click', ()=>{
+    modalEditAbout.classList.toggle('modal-ventana-active');
+})
+btnEditAboutClose.addEventListener('click',()=> {
+    modalEditAbout.classList.toggle('modal-ventana-active');
+    
+})
+
+// INPUTS
+let inputEditAboutTextarea = document.getElementById('edit-about-textarea');
+
+// Valor inicial de inputs
+inputEditAboutTextarea.value = document.getElementById('about-text').innerText;
+
+// Funcion upgrade
+btnEditAboutUpgrade.addEventListener('click',()=>{
+
+    document.getElementById('about-text').innerHTML = inputEditAboutTextarea.value;
+
+    //Cerrar modal al upgradear
+    modalEditAbout.classList.toggle('modal-ventana-active');
+
+})
