@@ -703,33 +703,18 @@ body {
         background-image: linear-gradient(40deg, var(--lightBlue) 30%, var(--darkBlue) 70%);
     }
     
+    .edit-btn {
+        right: 3.5%;
+    }
+
     .perfil > .edit-btn{
-        top: 47.5%;
+        top: 120px;
         left: 5%;
         right: initial;
     }
     
     .about > .edit-btn {
-        top: 17.5%;
-    }
-    
-    .experiencia > .edit-btn {
-        top: 18%;
-        right: 3.5%;
-    }
-    
-    .educacion > .edit-btn {
-        top: 5.5%;
-        right: 3.5%;
-    }
-    
-    .hys > .edit-btn {
-        top: 17%;
-        right: 3.5%;
-    }
-    
-    .proyectos > .edit-btn {
-        top: 7.5%;
-        right: 3.5%;
+        top: 37px;
+        right: 5%;
     }
 }
