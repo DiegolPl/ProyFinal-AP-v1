@@ -140,3 +140,39 @@ btnEditAboutUpgrade.addEventListener('click',()=>{
     modalEditAbout.classList.toggle('modal-ventana-active');
 
 })
+
+// ---------------------------------------------- EXPERIENCIA ----------------------------------------------
+
+let orderExperiencia = () => {
+    if(window.innerWidth > 768){
+            
+        // Cantidad de elementos
+        let cantidadElementos = document.getElementById('container-experiencias').childElementCount;
+    
+        // Array con los elementos 
+        let arrElementos = [...document.getElementById('container-experiencias').children]; //El metodo splice borra del original x ende tengo que hacerlo sobre una copia del array original
+        
+        if(cantidadElementos % 2 === 0){
+    
+            // El codigo es igual en ambas partes ya que la cantidad es par y el metodo splice() borra la parte que extrae
+            let arrUno = arrElementos.splice(0, (cantidadElementos/2));
+            let arrDos = arrElementos.splice(0, (cantidadElementos/2));
+            
+            for(let i = 0; i < arrUno.length; i++){
+                arrUno[i].style.order = `${1+(2*i)}`;
+                arrDos[i].style.order = `${1+(2*i)+1}`;
+            }
+        }else{
+            let arrUno = arrElementos.splice(0, (cantidadElementos/2));
+            let arrDos = arrElementos.splice(1, (cantidadElementos/2));
+            console.log(arrElementos.length)
+            
+            for(let i = 0; i < arrUno.length; i++){
+                arrUno[i].style.order = `${1+(2*i)}`;
+                arrDos[i].style.order = `${1+(2*i)+1}`;
+            }
+            arrElementos[0].style.order = `${cantidadElementos + 1}`;
+        }
+        
+    }
+};
