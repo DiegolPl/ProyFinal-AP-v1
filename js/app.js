@@ -105,7 +105,7 @@ btnEditPerfilUpgrade.addEventListener('click',()=>{
 
 })
 
-// ---------------------------------------------- PERFIL ----------------------------------------------
+// ---------------------------------------------- ABOUT ----------------------------------------------
 
 // EDIT BTNS
 let btnEditAbout = document.getElementById('btn-edit-about');
@@ -176,3 +176,156 @@ let orderExperiencia = () => {
         
     }
 };
+
+// ---------------------------------------------- EDUCACION ----------------------------------------------
+
+let orderEducacion = () => {
+    if(window.innerWidth > 768){
+            
+        // Cantidad de elementos
+        let cantidadElementos = document.getElementById('container-educacion').childElementCount;
+        // console.log(cantidadElementos)
+        // Array con los elementos 
+        let arrElementos = [...document.getElementById('container-educacion').children]; //El metodo splice borra del original x ende tengo que hacerlo sobre una copia del array original
+        
+        if(cantidadElementos % 2 === 0){
+
+            // El codigo es igual en ambas partes ya que la cantidad es par y el metodo splice() borra la parte que extrae
+            let arrUno = arrElementos.splice(0, (cantidadElementos/2));
+            let arrDos = arrElementos.splice(0, (cantidadElementos/2));
+            
+            for(let i = 0; i < arrUno.length; i++){
+                arrUno[i].style.order = `${1+(2*i)}`;
+                arrDos[i].style.order = `${1+(2*i)+1}`;
+            }
+        }else{
+            let arrUno = arrElementos.splice(0, (cantidadElementos/2));
+            let arrDos = arrElementos.splice(1, (cantidadElementos/2));
+            console.log(arrElementos.length)
+            
+            for(let i = 0; i < arrUno.length; i++){
+                arrUno[i].style.order = `${1+(2*i)}`;
+                arrDos[i].style.order = `${1+(2*i)+1}`;
+            }
+            arrElementos[0].style.order = `${cantidadElementos + 1}`;
+        }
+        
+    }
+}
+
+
+// ---------------------------------------------- ACTIVAR ORDENES ----------------------------------------------
+
+let upgradeAll = () => {
+    orderEducacion();
+    orderExperiencia();
+}
+
+// ---------------------------------------------- BOTON ELIMINAR EDUCACION ----------------------------------------------
+
+let arrBtnDeleteEducacion = document.querySelectorAll('.btn-delete-educacion');
+
+for(let i = 0; i < arrBtnDeleteEducacion.length; i++){
+    arrBtnDeleteEducacion[i].addEventListener('click', ()=>{
+        let boxPadreAEliminar = arrBtnDeleteEducacion[i].parentNode.parentNode;
+        boxPadreAEliminar.remove();
+        orderEducacion();
+    })
+}
+
+// ---------------------------------------------- BOTON EDITAR EDUCACION ----------------------------------------------
+
+let arrBtnEditEducacion = document.querySelectorAll('.btn-edit-educacion');
+
+for(let i = 0; i < arrBtnEditEducacion.length; i++){
+    arrBtnEditEducacion[i].addEventListener('click', ()=>{
+        let boxPadreAEditar = arrBtnEditEducacion[i].parentNode.parentNode;
+        let datos = {
+            fecha: boxPadreAEditar.children[1].children[0].textContent,
+            instituto: boxPadreAEditar.children[1].children[1].textContent,
+            titulo: boxPadreAEditar.children[2].children[0].textContent,
+            descripcion: boxPadreAEditar.children[2].children[1].textContent
+        }
+
+        // Creo la ventana modal
+        let ventanaModal = document.createElement('DIV');
+        ventanaModal.classList.add('modal-ventana');
+        ventanaModal.classList.add('modal-ventana-active');
+        document.getElementsByTagName('body')[0].appendChild(ventanaModal);       
+
+        // Creo el formulario de edicion
+        let formulario = document.createElement('FORM');
+        formulario.classList.add('form-login');
+        formulario.classList.add('form-edit');
+        ventanaModal.appendChild(formulario);
+
+        // Creacion de titulo
+        let titulo = document.createElement('H2');
+        titulo.classList.add('form-login-title')
+        let textoTitulo = document.createTextNode('Modo edicion!');
+        titulo.appendChild(textoTitulo);
+        formulario.appendChild(titulo);
+
+        // Creacion de boton close
+        let btnCerrar = document.createElement('I');
+        btnCerrar.classList.add('fa-solid');
+        btnCerrar.classList.add('fa-xmark');
+        btnCerrar.classList.add('modal-close-btn');
+        formulario.appendChild(btnCerrar);
+
+        // Evento boton close
+        btnCerrar.addEventListener('click', ()=>{
+            ventanaModal.classList.remove('modal-ventana-active');
+        })
+
+        // Creacion de box y sus inputs
+        function creadorBoxInputs(id, nameLabel,value){
+
+            // Box container
+            let box = document.createElement('DIV');
+            box.classList.add('modal-box');   
+            box.classList.add('user-box');   
+            box.classList.add('modal-box-edit');
+            formulario.appendChild(box);
+            
+            // Label
+            let label = document.createElement('LABEL');
+            label.classList.add('label-modal');
+            label.setAttribute('for',`name-input-${id}`);
+            label.setAttribute('id',`name-label-${id}`);
+            let textoLabel = document.createTextNode(`${nameLabel}`);
+            label.appendChild(textoLabel);
+            box.appendChild(label);
+
+            // Input
+            let input = document.createElement('INPUT');
+            input.classList.add('input-modal');
+            input.setAttribute('id',`name-input-${id}`);
+            input.setAttribute('type',`text`);
+            input.setAttribute('value',`${value}`);
+            box.appendChild(input);
+            
+        }
+        creadorBoxInputs('fecha-educ','Fecha: ', datos.fecha);
+        creadorBoxInputs('instituto','Instituto: ', datos.instituto);
+        creadorBoxInputs('titulo','Titulo: ', datos.titulo);
+        creadorBoxInputs('descripcion','Descripcion: ', datos.descripcion);
+
+        // Boton
+        let boton = document.createElement('INPUT');
+        boton.classList.add('form-login-btn');
+        boton.setAttribute('id',`name-boton-edit-educacion`);
+        boton.setAttribute('type',`button`);
+        boton.setAttribute('value',`Editar`);
+        formulario.appendChild(boton);
+
+        boton.addEventListener('click',()=>{
+            boxPadreAEditar.children[1].children[0].innerHTML = document.getElementById('name-input-fecha-educ').value;
+            boxPadreAEditar.children[1].children[1].innerHTML = document.getElementById('name-input-instituto').value;
+            boxPadreAEditar.children[2].children[0].innerHTML = document.getElementById('name-input-titulo').value;
+            boxPadreAEditar.children[2].children[1].innerHTML = document.getElementById('name-input-descripcion').value;
+            ventanaModal.classList.remove('modal-ventana-active');
+            ventanaModal.remove();
+        })
+    })
+}

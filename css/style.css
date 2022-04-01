@@ -389,6 +389,8 @@ body {
 }
 
 .box-seccion {
+    position: relative;
+    min-height: 100px;
     color: var(--darkBlue);
     padding: 1rem 2rem;
     display: grid;
@@ -399,13 +401,30 @@ body {
     margin-left: 1rem;
 }
 
+.box-seccion .box-edit {
+    position: absolute;
+    right: 20px;
+    top: 0;
+}
+
+.box-edit > .btn-edit {
+    color: #048808;
+    cursor: pointer;
+}
+
+.box-edit > .btn-delete {
+    color: rgb(196, 19, 19);
+    cursor: pointer;
+}
+
 .educacion .box-seccion, .experiencia .box-seccion {
-    position: relative;
+    /* position: relative; */
     border-left: 3px solid var(--lightBlue);
 }
 
 .hys .box-seccion {
     grid-template-columns: 1fr;
+    min-height: 25px;
     /* grid-template-columns: 2fr 4fr; */
     
 }
@@ -540,7 +559,7 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .container-seccion .box-seccion:nth-child(1){
+    /* .container-seccion .box-seccion:nth-child(1){
         order: 1;
     }
 
@@ -582,7 +601,7 @@ body {
 
     .container-seccion .box-seccion:nth-child(11){
         order: 10;
-    }
+    } */
 
     .box-seccion h3 {
         font-size: 1.8rem;
