@@ -213,33 +213,123 @@ let orderEducacion = () => {
     }
 }
 
-
 // ---------------------------------------------- ACTIVAR ORDENES ----------------------------------------------
 
 let upgradeAll = () => {
     orderEducacion();
     orderExperiencia();
+    activarBtnsEditEducacion();
 }
 
-// ---------------------------------------------- BOTON ELIMINAR EDUCACION ----------------------------------------------
 
-let arrBtnDeleteEducacion = document.querySelectorAll('.btn-delete-educacion');
+// ---------------------------------------------- BOTON AGREGAR EDUCACION ----------------------------------------------
 
-for(let i = 0; i < arrBtnDeleteEducacion.length; i++){
-    arrBtnDeleteEducacion[i].addEventListener('click', ()=>{
-        let boxPadreAEliminar = arrBtnDeleteEducacion[i].parentNode.parentNode;
+let btnAddEducacion = document.getElementById('btn-educacion-add');
+let btnCloseAddEducacion = document.getElementById('btn-edit-educacion-close');
+let btnUpgradeEducacion = document.getElementById('edit-educacion-btn');
+
+btnAddEducacion.addEventListener('click',()=>{
+    document.getElementById('modal-edit-educacion').classList.toggle('modal-ventana-active');
+})
+
+btnCloseAddEducacion.addEventListener('click',()=>{
+    document.getElementById('modal-edit-educacion').classList.toggle('modal-ventana-active');
+})
+
+btnUpgradeEducacion.addEventListener('click',()=>{
+    let containerPadre = document.getElementById('container-educacion');
+
+    // Contenedor de nuevo elemento
+    let boxSeccion = document.createElement('DIV');
+    boxSeccion.classList.add('box-seccion');
+    containerPadre.prepend(boxSeccion);
+
+    // Contenedor de botones de edit
+    let boxEdit = document.createElement('DIV');
+    boxEdit.classList.add('box-edit');
+    boxSeccion.appendChild(boxEdit);
+
+    // boton edit
+    let btnEdit = document.createElement('SPAN');
+    btnEdit.classList.add('material-icons');
+    btnEdit.classList.add('material-icons-outlined');
+    btnEdit.classList.add('btn-edit');
+    btnEdit.classList.add('btn-edit-educacion');
+    let textoBtnEdit = document.createTextNode('edit');
+    btnEdit.appendChild(textoBtnEdit);
+    boxEdit.appendChild(btnEdit);
+
+    // Funcion boton edit
+    btnEdit.addEventListener('click',()=>{
+        editElemEducacion(btnEdit);
+    })
+
+    // boton delete
+    let btnDelete = document.createElement('SPAN');
+    btnDelete.classList.add('material-icons');
+    btnDelete.classList.add('material-icons-outlined');
+    btnDelete.classList.add('btn-delete');
+    btnDelete.classList.add('btn-delete-educacion');
+    let textoBtnDelete = document.createTextNode('cancel');
+    btnDelete.appendChild(textoBtnDelete);
+    boxEdit.appendChild(btnDelete);
+
+    // Funcion boton delete
+    btnDelete.addEventListener('click', ()=>{
+        let boxPadreAEliminar = btnDelete.parentNode.parentNode;
         boxPadreAEliminar.remove();
         orderEducacion();
     })
-}
 
-// ---------------------------------------------- BOTON EDITAR EDUCACION ----------------------------------------------
+    // Contenedor de lado izquierdo
+    let boxLadoIzq = document.createElement('DIV');
+    boxLadoIzq.classList.add('box-lado-izq');
+    boxSeccion.appendChild(boxLadoIzq);
 
-let arrBtnEditEducacion = document.querySelectorAll('.btn-edit-educacion');
+    // Fecha
+    let fecha = document.createElement('H3');
+    let textoFecha = document.createTextNode(`${document.getElementById('new-input-educacion-fecha').value}`);
+    fecha.appendChild(textoFecha);
+    boxLadoIzq.appendChild(fecha);
 
-for(let i = 0; i < arrBtnEditEducacion.length; i++){
-    arrBtnEditEducacion[i].addEventListener('click', ()=>{
-        let boxPadreAEditar = arrBtnEditEducacion[i].parentNode.parentNode;
+    // Instituto
+    let instituto = document.createElement('H4');
+    let textoInstituto = document.createTextNode(`${document.getElementById('new-input-educacion-instituto').value}`);
+    instituto.appendChild(textoInstituto);
+    boxLadoIzq.appendChild(instituto);
+
+    // Contenedor de lado derecho
+    let boxLadoDcho = document.createElement('DIV');
+    boxLadoDcho.classList.add('box-lado-dcho');
+    boxSeccion.appendChild(boxLadoDcho);
+
+    // Titulo
+    let titulo = document.createElement('H3');
+    let textoTitulo = document.createTextNode(`${document.getElementById('new-input-educacion-titulo').value}`);
+    titulo.appendChild(textoTitulo);
+    boxLadoDcho.appendChild(titulo);
+
+    // Descripcion
+    let descripcion = document.createElement('H4');
+    let textoDescripcion = document.createTextNode(`${document.getElementById('new-input-educacion-descripcion').value}`);
+    descripcion.appendChild(textoDescripcion);
+    boxLadoDcho.appendChild(descripcion);
+
+    orderEducacion();
+    // activarBtnsEditEducacion();
+    document.getElementById('modal-edit-educacion').classList.toggle('modal-ventana-active');
+    document.getElementById('new-input-educacion-fecha').value = '';
+    document.getElementById('new-input-educacion-instituto').value = '';
+    document.getElementById('new-input-educacion-titulo').value = '';
+    document.getElementById('new-input-educacion-descripcion').value = '';
+
+})
+
+// ---------------------------------------------- FUNCION BOTON EDITAR ----------------------------------------------
+
+let editElemEducacion = function(el){
+    // let boxPadreAEditar = arrBtnEditEducacion[i].parentNode.parentNode;
+    let boxPadreAEditar = el.parentNode.parentNode;
         let datos = {
             fecha: boxPadreAEditar.children[1].children[0].textContent,
             instituto: boxPadreAEditar.children[1].children[1].textContent,
@@ -276,6 +366,7 @@ for(let i = 0; i < arrBtnEditEducacion.length; i++){
         // Evento boton close
         btnCerrar.addEventListener('click', ()=>{
             ventanaModal.classList.remove('modal-ventana-active');
+            ventanaModal.remove();
         })
 
         // Creacion de box y sus inputs
@@ -324,8 +415,37 @@ for(let i = 0; i < arrBtnEditEducacion.length; i++){
             boxPadreAEditar.children[1].children[1].innerHTML = document.getElementById('name-input-instituto').value;
             boxPadreAEditar.children[2].children[0].innerHTML = document.getElementById('name-input-titulo').value;
             boxPadreAEditar.children[2].children[1].innerHTML = document.getElementById('name-input-descripcion').value;
-            ventanaModal.classList.remove('modal-ventana-active');
+            // ventanaModal.classList.remove('modal-ventana-active');
             ventanaModal.remove();
         })
-    })
+}
+
+
+// ---------------------------------------------- ACTIVAR BOTONES EDIT EDUCACION ----------------------------------------------
+
+let activarBtnsEditEducacion = ()=> {
+    // ---------------------------------------------- BOTON ELIMINAR EDUCACION ----------------------------------------------
+
+    let arrBtnDeleteEducacion = document.querySelectorAll('.btn-delete-educacion');
+
+    for(let i = 0; i < arrBtnDeleteEducacion.length; i++){
+        arrBtnDeleteEducacion[i].addEventListener('click', ()=>{
+            let boxPadreAEliminar = arrBtnDeleteEducacion[i].parentNode.parentNode;
+            boxPadreAEliminar.remove();
+            orderEducacion();
+        })
+    }
+
+    // ---------------------------------------------- BOTON EDITAR EDUCACION ----------------------------------------------
+
+    let arrBtnEditEducacion = document.querySelectorAll('.btn-edit-educacion');
+
+    for(let i = 0; i < arrBtnEditEducacion.length; i++){
+        arrBtnEditEducacion[i].addEventListener('click', ()=>{
+
+            editElemEducacion(arrBtnEditEducacion[i]);
+            
+        })
+    }
+
 }

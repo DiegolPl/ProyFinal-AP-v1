@@ -220,7 +220,8 @@ body {
 .form-edit .modal-box-edit {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 2fr 5fr;
+    /* gap: 2rem; */
 }
 
 .modal-box-edit label {
@@ -304,6 +305,17 @@ body {
 
 .edit-btn:hover {
     background-color: #8df791;
+}
+
+.edit-btn-add {
+    right: 15%;
+    font-size: 4rem;
+    border: none;
+    color: #20a925;
+}
+
+.edit-btn-add:hover {
+    background-color: initial;
 }
 
 .perfil > .edit-btn{
@@ -403,16 +415,26 @@ body {
 
 .box-seccion .box-edit {
     position: absolute;
-    right: 20px;
+    right: 10px;
     top: 0;
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eee9;
+    padding: .7rem 2rem;
+    border-radius: .5rem;
 }
 
 .box-edit > .btn-edit {
-    color: #048808;
+    font-size: 3.5rem;
+    /* color: #048808; */
+    color: #20a925;
     cursor: pointer;
 }
 
 .box-edit > .btn-delete {
+    font-size: 3.5rem;
     color: rgb(196, 19, 19);
     cursor: pointer;
 }
@@ -615,6 +637,10 @@ body {
         font-size: 1.25rem;
     }
 
+    .box-seccion .box-lado-dcho {
+        width: 80%;
+    }
+
     .box-seccion h4 {
         font-size: 1.35rem;
     }
@@ -726,6 +752,16 @@ body {
         right: 3.5%;
     }
 
+    .edit-btn-add {
+        right: 7%;
+        font-size: 4.75rem;
+        border: none;
+    }
+
+    .edit-btn-add:hover {
+        background-color: initial;
+    }
+
     .perfil > .edit-btn{
         top: 120px;
         left: 5%;
@@ -735,5 +771,15 @@ body {
     .about > .edit-btn {
         top: 37px;
         right: 5%;
+    }
+
+    .box-seccion .box-edit {
+        right: 10px;
+        width: 20%;
+    }
+    
+    .box-edit > .btn-edit,
+    .box-edit > .btn-delete {
+        font-size: 3rem;
     }
 }
