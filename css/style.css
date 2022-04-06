@@ -229,7 +229,8 @@ body {
     text-transform: uppercase;
 }
 
-.modal-box-edit input[type="text"] {
+.modal-box-edit input[type="text"],
+.modal-box-edit input[type="number"] {
     border: none;
     border-bottom: 3px solid var(--darkBlue);
     outline: none;

@@ -220,6 +220,7 @@ let upgradeAll = () => {
     orderExperiencia();
     activarBtnsEditEducacion();
     activarBtnsEditExperiencia();
+    activarBtnsEditHys();
 }
 
 // ---------------------------------------------- CREAR BOXSECCION (EDUCACION, EXP) ----------------------------------------------
@@ -608,3 +609,290 @@ let activarBtnsEditEducacion = ()=> {
 
 // ---------------------------------------------- H&S SKILLS ----------------------------------------------
 
+let btnAddHys = document.getElementById('btn-hys-add');
+let btnCloseAddHys = document.getElementById('btn-edit-hys-close');
+let btnUpgradeHys = document.getElementById('edit-hys-btn');
+
+btnAddHys.addEventListener('click',()=>{
+    document.getElementById('modal-edit-hys').classList.toggle('modal-ventana-active');
+})
+
+btnCloseAddHys.addEventListener('click',()=>{
+    document.getElementById('modal-edit-hys').classList.toggle('modal-ventana-active');
+})
+
+btnUpgradeHys.addEventListener('click',()=>{
+    let containerPadre = document.getElementById('container-hys');
+
+    // Contenedor de nuevo elemento
+    let boxSeccion = document.createElement('DIV');
+    boxSeccion.classList.add('box-seccion');
+    // containerPadre.prepend(boxSeccion);
+    containerPadre.appendChild(boxSeccion);
+
+    // Contenedor de botones de edit
+    let boxEdit = document.createElement('DIV');
+    boxEdit.classList.add('box-edit');
+    boxSeccion.appendChild(boxEdit);
+
+    // boton edit
+    let btnEdit = document.createElement('SPAN');
+    btnEdit.classList.add('material-icons');
+    btnEdit.classList.add('material-icons-outlined');
+    btnEdit.classList.add('btn-edit');
+    btnEdit.classList.add('container-hys');
+    let textoBtnEdit = document.createTextNode('edit');
+    btnEdit.appendChild(textoBtnEdit);
+    boxEdit.appendChild(btnEdit);
+
+    // Funcion boton edit
+    btnEdit.addEventListener('click',()=>{
+        let boxPadreAEditar = btnEdit.parentNode.parentNode;
+
+        let valorStyle = boxPadreAEditar.children[2].children[0].children[0].getAttribute('style');
+        console.log(valorStyle)
+        let porcentajeValor = valorStyle.match(/\d+/);
+
+        console.log(porcentajeValor[0])
+        let datos = {
+            name: boxPadreAEditar.children[1].textContent,
+            porcentaje: Number(porcentajeValor)
+        }
+
+        // Creo la ventana modal
+        let ventanaModal = document.createElement('DIV');
+        ventanaModal.classList.add('modal-ventana');
+        ventanaModal.classList.add('modal-ventana-active');
+        document.getElementsByTagName('body')[0].appendChild(ventanaModal);       
+
+        // Creo el formulario de edicion
+        let formulario = document.createElement('FORM');
+        formulario.classList.add('form-login');
+        formulario.classList.add('form-edit');
+        ventanaModal.appendChild(formulario);
+
+        // Creacion de titulo
+        let titulo = document.createElement('H2');
+        titulo.classList.add('form-login-title')
+        let textoTitulo = document.createTextNode('Modo edicion!');
+        titulo.appendChild(textoTitulo);
+        formulario.appendChild(titulo);
+
+        // Creacion de boton close
+        let btnCerrar = document.createElement('I');
+        btnCerrar.classList.add('fa-solid');
+        btnCerrar.classList.add('fa-xmark');
+        btnCerrar.classList.add('modal-close-btn');
+        formulario.appendChild(btnCerrar);
+
+        // Evento boton close
+        btnCerrar.addEventListener('click', ()=>{
+            ventanaModal.classList.remove('modal-ventana-active');
+            ventanaModal.remove();
+        })
+
+        // Creacion de box y sus inputs
+        function creadorBoxInputs(id, nameLabel,value){
+
+            // Box container
+            let box = document.createElement('DIV');
+            box.classList.add('modal-box');   
+            box.classList.add('user-box');   
+            box.classList.add('modal-box-edit');
+            formulario.appendChild(box);
+            
+            // Label
+            let label = document.createElement('LABEL');
+            label.classList.add('label-modal');
+            label.setAttribute('for',`name-input-${id}`);
+            label.setAttribute('id',`name-label-${id}`);
+            let textoLabel = document.createTextNode(`${nameLabel}`);
+            label.appendChild(textoLabel);
+            box.appendChild(label);
+
+            // Input
+            let input = document.createElement('INPUT');
+            input.classList.add('input-modal');
+            input.setAttribute('id',`name-input-${id}`);
+            input.setAttribute('type',`text`);
+            input.setAttribute('value',`${value}`);
+            box.appendChild(input);
+            
+        }
+        creadorBoxInputs('name-skill','Skill: ', datos.name);
+        creadorBoxInputs('porcentaje-skill','Porcentaje: ', datos.porcentaje);
+
+        // Boton
+        let boton = document.createElement('INPUT');
+        boton.classList.add('form-login-btn');
+        boton.setAttribute('id','name-boton-edit-hys');
+        boton.setAttribute('type','button');
+        boton.setAttribute('value','Editar');
+        formulario.appendChild(boton);
+
+        boton.addEventListener('click',()=>{
+            boxPadreAEditar.children[1].innerHTML = document.getElementById('name-input-name-skill').value;
+            boxPadreAEditar.children[2].children[0].children[0].style.width = document.getElementById('name-input-porcentaje-skill').value + '%';
+            // ventanaModal.classList.remove('modal-ventana-active');
+            ventanaModal.remove();
+        })
+    })
+
+    // boton delete
+    let btnDelete = document.createElement('SPAN');
+    btnDelete.classList.add('material-icons');
+    btnDelete.classList.add('material-icons-outlined');
+    btnDelete.classList.add('btn-delete');
+    btnDelete.classList.add('btn-delete-hys');
+    let textoBtnDelete = document.createTextNode('cancel');
+    btnDelete.appendChild(textoBtnDelete);
+    boxEdit.appendChild(btnDelete);
+
+    // Funcion boton delete
+    btnDelete.addEventListener('click', ()=>{
+        let boxPadreAEliminar = btnDelete.parentNode.parentNode;
+        boxPadreAEliminar.remove();
+    })
+
+    // Titulo de Skill
+    let titulo = document.createElement('H3');
+    titulo.classList.add('skill-name');
+    let textoTitulo = document.createTextNode(`${document.getElementById('new-input-hys-skill').value}`);
+    titulo.appendChild(textoTitulo);
+    boxSeccion.appendChild(titulo);
+
+    // Skill box
+    let skillBox = document.createElement('DIV');
+    skillBox.classList.add('skill-box');
+
+    // Skill bar bg
+    let skillBarBg = document.createElement('DIV');
+    skillBarBg.classList.add('skill-bar-bg');
+    
+    // Skill bar bg
+    let skillBar = document.createElement('DIV');
+    skillBar.classList.add('skill-bar');
+    skillBar.setAttribute('id',`skill-${document.getElementById('new-input-hys-skill').value}`);
+    skillBar.style.width = document.getElementById('new-input-hys-porcentaje').value + '%';
+    skillBarBg.appendChild(skillBar);
+    skillBox.appendChild(skillBarBg);
+    boxSeccion.appendChild(skillBox);
+
+    // Cerrar Ventana Modal
+    document.getElementById('modal-edit-hys').classList.toggle('modal-ventana-active');
+    document.getElementById('new-input-hys-skill').value = '';
+    document.getElementById('new-input-hys-porcentaje').value = '';
+})
+
+let activarBtnsEditHys = ()=> {
+    // ---------------------------------------------- BOTON ELIMINAR HYS ----------------------------------------------
+
+    let arrBtnDeleteHys = document.querySelectorAll('.btn-delete-hys');
+
+    for(let i = 0; i < arrBtnDeleteHys.length; i++){
+        arrBtnDeleteHys[i].addEventListener('click', ()=>{
+            let boxPadreAEliminar = arrBtnDeleteHys[i].parentNode.parentNode;
+            boxPadreAEliminar.remove();
+        })
+    }
+
+    // ---------------------------------------------- BOTON EDITAR HYS ----------------------------------------------
+
+    let arrBtnEditHys = document.querySelectorAll('.btn-edit-hys');
+
+        for(let i = 0; i < arrBtnEditHys.length; i++){
+            arrBtnEditHys[i].addEventListener('click', ()=>{
+
+            let boxPadreAEditar = arrBtnEditHys[i].parentNode.parentNode;
+
+            let valorStyle = boxPadreAEditar.children[2].children[0].children[0].getAttribute('style');
+            let porcentajeValor = valorStyle.match(/\d+/);
+
+            console.log(porcentajeValor[0])
+            let datos = {
+                name: boxPadreAEditar.children[1].textContent,
+                porcentaje: Number(porcentajeValor)
+            }
+
+            // Creo la ventana modal
+            let ventanaModal = document.createElement('DIV');
+            ventanaModal.classList.add('modal-ventana');
+            ventanaModal.classList.add('modal-ventana-active');
+            document.getElementsByTagName('body')[0].appendChild(ventanaModal);       
+
+            // Creo el formulario de edicion
+            let formulario = document.createElement('FORM');
+            formulario.classList.add('form-login');
+            formulario.classList.add('form-edit');
+            ventanaModal.appendChild(formulario);
+
+            // Creacion de titulo
+            let titulo = document.createElement('H2');
+            titulo.classList.add('form-login-title')
+            let textoTitulo = document.createTextNode('Modo edicion!');
+            titulo.appendChild(textoTitulo);
+            formulario.appendChild(titulo);
+
+            // Creacion de boton close
+            let btnCerrar = document.createElement('I');
+            btnCerrar.classList.add('fa-solid');
+            btnCerrar.classList.add('fa-xmark');
+            btnCerrar.classList.add('modal-close-btn');
+            formulario.appendChild(btnCerrar);
+
+            // Evento boton close
+            btnCerrar.addEventListener('click', ()=>{
+                ventanaModal.classList.remove('modal-ventana-active');
+                ventanaModal.remove();
+            })
+
+            // Creacion de box y sus inputs
+            function creadorBoxInputs(id, nameLabel,value){
+
+                // Box container
+                let box = document.createElement('DIV');
+                box.classList.add('modal-box');   
+                box.classList.add('user-box');   
+                box.classList.add('modal-box-edit');
+                formulario.appendChild(box);
+                
+                // Label
+                let label = document.createElement('LABEL');
+                label.classList.add('label-modal');
+                label.setAttribute('for',`name-input-${id}`);
+                label.setAttribute('id',`name-label-${id}`);
+                let textoLabel = document.createTextNode(`${nameLabel}`);
+                label.appendChild(textoLabel);
+                box.appendChild(label);
+
+                // Input
+                let input = document.createElement('INPUT');
+                input.classList.add('input-modal');
+                input.setAttribute('id',`name-input-${id}`);
+                input.setAttribute('type',`text`);
+                input.setAttribute('value',`${value}`);
+                box.appendChild(input);
+                
+            }
+            creadorBoxInputs('name-skill','Skill: ', datos.name);
+            creadorBoxInputs('porcentaje-skill','Porcentaje: ', datos.porcentaje);
+
+            // Boton
+            let boton = document.createElement('INPUT');
+            boton.classList.add('form-login-btn');
+            boton.setAttribute('id','name-boton-edit-hys');
+            boton.setAttribute('type','button');
+            boton.setAttribute('value','Editar');
+            formulario.appendChild(boton);
+
+            boton.addEventListener('click',()=>{
+                boxPadreAEditar.children[1].innerHTML = document.getElementById('name-input-name-skill').value;
+                boxPadreAEditar.children[2].children[0].children[0].style.width = document.getElementById('name-input-porcentaje-skill').value + '%';
+                // ventanaModal.classList.remove('modal-ventana-active');
+                ventanaModal.remove();
+            })
+            
+        })
+    }
+
+}
