@@ -147,10 +147,10 @@ let orderExperiencia = () => {
     if(window.innerWidth > 768){
             
         // Cantidad de elementos
-        let cantidadElementos = document.getElementById('container-experiencias').childElementCount;
+        let cantidadElementos = document.getElementById('container-experiencia').childElementCount;
     
         // Array con los elementos 
-        let arrElementos = [...document.getElementById('container-experiencias').children]; //El metodo splice borra del original x ende tengo que hacerlo sobre una copia del array original
+        let arrElementos = [...document.getElementById('container-experiencia').children]; //El metodo splice borra del original x ende tengo que hacerlo sobre una copia del array original
         
         if(cantidadElementos % 2 === 0){
     
@@ -221,6 +221,113 @@ let upgradeAll = () => {
     activarBtnsEditEducacion();
 }
 
+
+let setBoxSection = function(seccion, idPrimeroIzq, idSegundoIzq, idPrimeroDcha, idSegundoDcha, orderSeccion){
+    let containerPadre = document.getElementById(`container-${seccion}`);
+
+    // Contenedor de nuevo elemento
+    let boxSeccion = document.createElement('DIV');
+    boxSeccion.classList.add('box-seccion');
+    containerPadre.prepend(boxSeccion);
+
+    // Contenedor de botones de edit
+    let boxEdit = document.createElement('DIV');
+    boxEdit.classList.add('box-edit');
+    boxSeccion.appendChild(boxEdit);
+
+    // boton edit
+    let btnEdit = document.createElement('SPAN');
+    btnEdit.classList.add('material-icons');
+    btnEdit.classList.add('material-icons-outlined');
+    btnEdit.classList.add('btn-edit');
+    btnEdit.classList.add(`btn-edit-${seccion}`);
+    let textoBtnEdit = document.createTextNode('edit');
+    btnEdit.appendChild(textoBtnEdit);
+    boxEdit.appendChild(btnEdit);
+
+    // Funcion boton edit
+    btnEdit.addEventListener('click',()=>{
+        editElemEducacion(btnEdit);
+    })
+
+    // boton delete
+    let btnDelete = document.createElement('SPAN');
+    btnDelete.classList.add('material-icons');
+    btnDelete.classList.add('material-icons-outlined');
+    btnDelete.classList.add('btn-delete');
+    btnDelete.classList.add(`btn-delete-${seccion}`);
+    let textoBtnDelete = document.createTextNode('cancel');
+    btnDelete.appendChild(textoBtnDelete);
+    boxEdit.appendChild(btnDelete);
+
+    // Funcion boton delete
+    btnDelete.addEventListener('click', ()=>{
+        let boxPadreAEliminar = btnDelete.parentNode.parentNode;
+        boxPadreAEliminar.remove();
+        if(orderSeccion === 'orderEducacion'){
+            orderEducacion();
+        }
+        if(orderSeccion === 'orderExperiencia'){
+            orderExperiencia();
+        }
+    })
+
+    // Contenedor de lado izquierdo
+    let boxLadoIzq = document.createElement('DIV');
+    boxLadoIzq.classList.add('box-lado-izq');
+    boxSeccion.appendChild(boxLadoIzq);
+
+    // Fecha - PrimeroIzq
+    let primeroIzq = document.createElement('H3');
+    // let textoFecha = document.createTextNode(`${document.getElementById(`new-input-educacion-fecha`).value}`);
+    let textoPrimeroIzq = document.createTextNode(`${document.getElementById(`${idPrimeroIzq}`).value}`);
+    primeroIzq.appendChild(textoPrimeroIzq);
+    boxLadoIzq.appendChild(primeroIzq);
+
+    // Instituto - SegundoIzq
+    let segundoIzq = document.createElement('H4');
+    // let textoInstituto = document.createTextNode(`${document.getElementById('new-input-educacion-instituto').value}`);
+    let textoSegundoIzq = document.createTextNode(`${document.getElementById(`${idSegundoIzq}`).value}`);
+    segundoIzq.appendChild(textoSegundoIzq);
+    boxLadoIzq.appendChild(segundoIzq);
+
+    // Contenedor de lado derecho
+    let boxLadoDcho = document.createElement('DIV');
+    boxLadoDcho.classList.add('box-lado-dcho');
+    boxSeccion.appendChild(boxLadoDcho);
+
+    // Titulo - PrimeroDcha
+    let primeroDcha = document.createElement('H3');
+    // let textoTitulo = document.createTextNode(`${document.getElementById('new-input-educacion-titulo').value}`);
+    let textoPrimeroDcha = document.createTextNode(`${document.getElementById(`${idPrimeroDcha}`).value}`);
+    primeroDcha.appendChild(textoPrimeroDcha);
+    boxLadoDcho.appendChild(primeroDcha);
+
+    // Descripcion - SegundoDcha
+    let segundoDcha = document.createElement('H4');
+    // let textoDescripcion = document.createTextNode(`${document.getElementById('new-input-educacion-descripcion').value}`);
+    let textoSegundoDcha = document.createTextNode(`${document.getElementById(`${idSegundoDcha}`).value}`);
+    segundoDcha.appendChild(textoSegundoDcha);
+    boxLadoDcho.appendChild(segundoDcha);
+
+    if(orderSeccion === 'orderEducacion'){
+        orderEducacion();
+    }
+    if(orderSeccion === 'orderExperiencia'){
+        orderExperiencia();
+    }
+    document.getElementById(`modal-edit-${seccion}`).classList.toggle('modal-ventana-active');
+    // document.getElementById('new-input-educacion-fecha').value = '';
+    document.getElementById(`${idPrimeroIzq}`).value = '';
+    // document.getElementById('new-input-educacion-instituto').value = '';
+    document.getElementById(`${idSegundoIzq}`).value = '';
+    // document.getElementById('new-input-educacion-titulo').value = '';
+    document.getElementById(`${idPrimeroDcha}`).value = '';
+    // document.getElementById('new-input-educacion-descripcion').value = '';
+    document.getElementById(`${idSegundoDcha}`).value = '';
+}
+
+
 // ---------------------------------------------- BOTON AGREGAR EXPERIENCIA ----------------------------------------------
 let btnAddExperiencia = document.getElementById('btn-experiencia-add');
 let btnCloseAddExperiencia = document.getElementById('btn-edit-experiencia-close');
@@ -232,6 +339,10 @@ btnAddExperiencia.addEventListener('click',()=>{
 
 btnCloseAddExperiencia.addEventListener('click',()=>{
     document.getElementById('modal-edit-experiencia').classList.toggle('modal-ventana-active');
+})
+
+btnUpgradeExperiencia.addEventListener('click',()=>{
+    setBoxSection('experiencia','new-input-experiencia-fecha','new-input-experiencia-lugar','new-input-experiencia-ocupacion','new-input-experiencia-descripcion', 'orderExperiencia');
 })
 
 
@@ -250,91 +361,92 @@ btnCloseAddEducacion.addEventListener('click',()=>{
 })
 
 btnUpgradeEducacion.addEventListener('click',()=>{
-    let containerPadre = document.getElementById('container-educacion');
+    // let containerPadre = document.getElementById('container-educacion');
 
-    // Contenedor de nuevo elemento
-    let boxSeccion = document.createElement('DIV');
-    boxSeccion.classList.add('box-seccion');
-    containerPadre.prepend(boxSeccion);
+    // // Contenedor de nuevo elemento
+    // let boxSeccion = document.createElement('DIV');
+    // boxSeccion.classList.add('box-seccion');
+    // containerPadre.prepend(boxSeccion);
 
-    // Contenedor de botones de edit
-    let boxEdit = document.createElement('DIV');
-    boxEdit.classList.add('box-edit');
-    boxSeccion.appendChild(boxEdit);
+    // // Contenedor de botones de edit
+    // let boxEdit = document.createElement('DIV');
+    // boxEdit.classList.add('box-edit');
+    // boxSeccion.appendChild(boxEdit);
 
-    // boton edit
-    let btnEdit = document.createElement('SPAN');
-    btnEdit.classList.add('material-icons');
-    btnEdit.classList.add('material-icons-outlined');
-    btnEdit.classList.add('btn-edit');
-    btnEdit.classList.add('btn-edit-educacion');
-    let textoBtnEdit = document.createTextNode('edit');
-    btnEdit.appendChild(textoBtnEdit);
-    boxEdit.appendChild(btnEdit);
+    // // boton edit
+    // let btnEdit = document.createElement('SPAN');
+    // btnEdit.classList.add('material-icons');
+    // btnEdit.classList.add('material-icons-outlined');
+    // btnEdit.classList.add('btn-edit');
+    // btnEdit.classList.add('btn-edit-educacion');
+    // let textoBtnEdit = document.createTextNode('edit');
+    // btnEdit.appendChild(textoBtnEdit);
+    // boxEdit.appendChild(btnEdit);
 
-    // Funcion boton edit
-    btnEdit.addEventListener('click',()=>{
-        editElemEducacion(btnEdit);
-    })
+    // // Funcion boton edit
+    // btnEdit.addEventListener('click',()=>{
+    //     editElemEducacion(btnEdit);
+    // })
 
-    // boton delete
-    let btnDelete = document.createElement('SPAN');
-    btnDelete.classList.add('material-icons');
-    btnDelete.classList.add('material-icons-outlined');
-    btnDelete.classList.add('btn-delete');
-    btnDelete.classList.add('btn-delete-educacion');
-    let textoBtnDelete = document.createTextNode('cancel');
-    btnDelete.appendChild(textoBtnDelete);
-    boxEdit.appendChild(btnDelete);
+    // // boton delete
+    // let btnDelete = document.createElement('SPAN');
+    // btnDelete.classList.add('material-icons');
+    // btnDelete.classList.add('material-icons-outlined');
+    // btnDelete.classList.add('btn-delete');
+    // btnDelete.classList.add('btn-delete-educacion');
+    // let textoBtnDelete = document.createTextNode('cancel');
+    // btnDelete.appendChild(textoBtnDelete);
+    // boxEdit.appendChild(btnDelete);
 
-    // Funcion boton delete
-    btnDelete.addEventListener('click', ()=>{
-        let boxPadreAEliminar = btnDelete.parentNode.parentNode;
-        boxPadreAEliminar.remove();
-        orderEducacion();
-    })
+    // // Funcion boton delete
+    // btnDelete.addEventListener('click', ()=>{
+    //     let boxPadreAEliminar = btnDelete.parentNode.parentNode;
+    //     boxPadreAEliminar.remove();
+    //     orderEducacion();
+    // })
 
-    // Contenedor de lado izquierdo
-    let boxLadoIzq = document.createElement('DIV');
-    boxLadoIzq.classList.add('box-lado-izq');
-    boxSeccion.appendChild(boxLadoIzq);
+    // // Contenedor de lado izquierdo
+    // let boxLadoIzq = document.createElement('DIV');
+    // boxLadoIzq.classList.add('box-lado-izq');
+    // boxSeccion.appendChild(boxLadoIzq);
 
-    // Fecha
-    let fecha = document.createElement('H3');
-    let textoFecha = document.createTextNode(`${document.getElementById('new-input-educacion-fecha').value}`);
-    fecha.appendChild(textoFecha);
-    boxLadoIzq.appendChild(fecha);
+    // // Fecha
+    // let fecha = document.createElement('H3');
+    // let textoFecha = document.createTextNode(`${document.getElementById('new-input-educacion-fecha').value}`);
+    // fecha.appendChild(textoFecha);
+    // boxLadoIzq.appendChild(fecha);
 
-    // Instituto
-    let instituto = document.createElement('H4');
-    let textoInstituto = document.createTextNode(`${document.getElementById('new-input-educacion-instituto').value}`);
-    instituto.appendChild(textoInstituto);
-    boxLadoIzq.appendChild(instituto);
+    // // Instituto
+    // let instituto = document.createElement('H4');
+    // let textoInstituto = document.createTextNode(`${document.getElementById('new-input-educacion-instituto').value}`);
+    // instituto.appendChild(textoInstituto);
+    // boxLadoIzq.appendChild(instituto);
 
-    // Contenedor de lado derecho
-    let boxLadoDcho = document.createElement('DIV');
-    boxLadoDcho.classList.add('box-lado-dcho');
-    boxSeccion.appendChild(boxLadoDcho);
+    // // Contenedor de lado derecho
+    // let boxLadoDcho = document.createElement('DIV');
+    // boxLadoDcho.classList.add('box-lado-dcho');
+    // boxSeccion.appendChild(boxLadoDcho);
 
-    // Titulo
-    let titulo = document.createElement('H3');
-    let textoTitulo = document.createTextNode(`${document.getElementById('new-input-educacion-titulo').value}`);
-    titulo.appendChild(textoTitulo);
-    boxLadoDcho.appendChild(titulo);
+    // // Titulo
+    // let titulo = document.createElement('H3');
+    // let textoTitulo = document.createTextNode(`${document.getElementById('new-input-educacion-titulo').value}`);
+    // titulo.appendChild(textoTitulo);
+    // boxLadoDcho.appendChild(titulo);
 
-    // Descripcion
-    let descripcion = document.createElement('H4');
-    let textoDescripcion = document.createTextNode(`${document.getElementById('new-input-educacion-descripcion').value}`);
-    descripcion.appendChild(textoDescripcion);
-    boxLadoDcho.appendChild(descripcion);
+    // // Descripcion
+    // let descripcion = document.createElement('H4');
+    // let textoDescripcion = document.createTextNode(`${document.getElementById('new-input-educacion-descripcion').value}`);
+    // descripcion.appendChild(textoDescripcion);
+    // boxLadoDcho.appendChild(descripcion);
 
-    orderEducacion();
-    // activarBtnsEditEducacion();
-    document.getElementById('modal-edit-educacion').classList.toggle('modal-ventana-active');
-    document.getElementById('new-input-educacion-fecha').value = '';
-    document.getElementById('new-input-educacion-instituto').value = '';
-    document.getElementById('new-input-educacion-titulo').value = '';
-    document.getElementById('new-input-educacion-descripcion').value = '';
+    // orderEducacion();
+    // document.getElementById('modal-edit-educacion').classList.toggle('modal-ventana-active');
+    // document.getElementById('new-input-educacion-fecha').value = '';
+    // document.getElementById('new-input-educacion-instituto').value = '';
+    // document.getElementById('new-input-educacion-titulo').value = '';
+    // document.getElementById('new-input-educacion-descripcion').value = '';
+
+    setBoxSection('educacion','new-input-educacion-fecha','new-input-educacion-instituto','new-input-educacion-titulo','new-input-educacion-descripcion', 'orderEducacion');
 
 })
 
