@@ -221,6 +221,19 @@ let upgradeAll = () => {
     activarBtnsEditEducacion();
 }
 
+// ---------------------------------------------- BOTON AGREGAR EXPERIENCIA ----------------------------------------------
+let btnAddExperiencia = document.getElementById('btn-experiencia-add');
+let btnCloseAddExperiencia = document.getElementById('btn-edit-experiencia-close');
+let btnUpgradeExperiencia = document.getElementById('edit-experiencia-btn');
+
+btnAddExperiencia.addEventListener('click',()=>{
+    document.getElementById('modal-edit-experiencia').classList.toggle('modal-ventana-active');
+})
+
+btnCloseAddExperiencia.addEventListener('click',()=>{
+    document.getElementById('modal-edit-experiencia').classList.toggle('modal-ventana-active');
+})
+
 
 // ---------------------------------------------- BOTON AGREGAR EDUCACION ----------------------------------------------
 

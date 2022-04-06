@@ -129,6 +129,35 @@
         <span class="material-icons material-icons-outlined edit-btn">
             edit
         </span>
+
+        <span class="material-icons material-icons-outlined edit-btn edit-btn-add" id="btn-experiencia-add">
+            add_circle_outline
+        </span>
+
+        <div class="modal-ventana" id="modal-edit-experiencia">
+            <form novalidate class="form-login form-edit">
+                <i class="fa-solid fa-xmark modal-close-btn" id="btn-edit-experiencia-close"></i>
+                <h2 class="form-login-title">Modo Edición!</h2>
+                <div class="modal-box user-box modal-box-edit">
+                    <label for="new-input-experiencia-fecha" id="new-label-experiencia-fecha" class="label-modal">Fecha:</label>
+                    <input type="text" id="new-input-experiencia-fecha" class="input-modal">
+                </div>
+                <div class="modal-box user-box modal-box-edit">
+                    <label for="new-input-experiencia-instituto" id="new-label-experiencia-instituto" class="label-modal">Lugar:</label>
+                    <input type="text" id="new-input-experiencia-instituto" class="input-modal">
+                </div>
+                <div class="modal-box user-box modal-box-edit">
+                    <label for="new-input-experiencia-titulo" id="new-label-experiencia-titulo" class="label-modal">Ocupacion:</label>
+                    <input type="text" id="new-input-experiencia-titulo" class="input-modal">
+                </div>
+                <div class="modal-box user-box modal-box-edit">
+                    <label for="new-input-experiencia-descripcion" id="new-label-experiencia-descripcion" class="label-modal">Descripcion:</label>
+                    <input type="text" id="new-input-experiencia-descripcion" class="input-modal">
+                </div>
+                <input type="button" value="Editar" class="form-login-btn" id="edit-experiencia-btn">
+            </form>
+        </div>
+
         <h2 class="title-section">experiencia</h2>
         <section class="container-seccion" id="container-experiencias">
             <div class="box-seccion">
@@ -212,10 +241,6 @@
                     <label for="new-input-educacion-descripcion" id="new-label-educacion-descripcion" class="label-modal">Descripcion:</label>
                     <input type="text" id="new-input-educacion-descripcion" class="input-modal">
                 </div>
-                <!-- <div class="modal-box user-box">
-                    <input type="password" name="password" id="pass-input" class="input-login">
-                    <label for="pass-input" id="label-login-pass" class="label-login">Contraseña</label>
-                </div> -->
                 <input type="button" value="Editar" class="form-login-btn" id="edit-educacion-btn">
             </form>
         </div>
