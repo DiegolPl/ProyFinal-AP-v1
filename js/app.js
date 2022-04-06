@@ -219,8 +219,10 @@ let upgradeAll = () => {
     orderEducacion();
     orderExperiencia();
     activarBtnsEditEducacion();
+    activarBtnsEditExperiencia();
 }
 
+// ---------------------------------------------- CREAR BOXSECCION (EDUCACION, EXP) ----------------------------------------------
 
 let setBoxSection = function(seccion, idPrimeroIzq, idSegundoIzq, idPrimeroDcha, idSegundoDcha, orderSeccion){
     let containerPadre = document.getElementById(`container-${seccion}`);
@@ -344,6 +346,35 @@ btnCloseAddExperiencia.addEventListener('click',()=>{
 btnUpgradeExperiencia.addEventListener('click',()=>{
     setBoxSection('experiencia','new-input-experiencia-fecha','new-input-experiencia-lugar','new-input-experiencia-ocupacion','new-input-experiencia-descripcion', 'orderExperiencia');
 })
+
+// ---------------------------------------------- ACTIVAR BOTONES EDIT EXPERIENCIA ----------------------------------------------
+
+let activarBtnsEditExperiencia = ()=> {
+    // ---------------------------------------------- BOTON ELIMINAR EXPERIENCIA ----------------------------------------------
+
+    let arrBtnDeleteExperiencia = document.querySelectorAll('.btn-delete-experiencia');
+
+    for(let i = 0; i < arrBtnDeleteExperiencia.length; i++){
+        arrBtnDeleteExperiencia[i].addEventListener('click', ()=>{
+            let boxPadreAEliminar = arrBtnDeleteExperiencia[i].parentNode.parentNode;
+            boxPadreAEliminar.remove();
+            orderExperiencia();
+        })
+    }
+
+    // ---------------------------------------------- BOTON EDITAR EXPERIENCIA ----------------------------------------------
+
+    let arrBtnEditExperiencia = document.querySelectorAll('.btn-edit-experiencia');
+
+    for(let i = 0; i < arrBtnEditExperiencia.length; i++){
+        arrBtnEditExperiencia[i].addEventListener('click', ()=>{
+
+            editElemEducacion(arrBtnEditExperiencia[i]);
+            
+        })
+    }
+
+}
 
 
 // ---------------------------------------------- BOTON AGREGAR EDUCACION ----------------------------------------------
@@ -574,3 +605,6 @@ let activarBtnsEditEducacion = ()=> {
     }
 
 }
+
+// ---------------------------------------------- H&S SKILLS ----------------------------------------------
+
