@@ -915,12 +915,14 @@ btnCloseAddProyecto.addEventListener('click',()=>{
 btnUpgradeProyecto.addEventListener('click',()=>{
     let valorInputImg = String(document.getElementById('edit-proyecto-input-img').value);
     let lastSlashInputImg = valorInputImg.lastIndexOf('\\');    //Index del ultimo \
-    let lastSlashSrcImgActual = String(document.getElementById('perfil-foto').src).lastIndexOf('/');
-    let newSrcParteUno = String(document.getElementById('perfil-foto').src).slice(0, lastSlashSrcImgActual + 1);
+    // let lastSlashSrcImgActual = String(document.getElementById('perfil-foto').src).lastIndexOf('/');
+    // let newSrcParteUno = String(document.getElementById('perfil-foto').src).slice(0, lastSlashSrcImgActual + 1);
     let newSrcParteDos = valorInputImg.slice(lastSlashInputImg + 1, valorInputImg.length);
 
     // Valor de SRC de la imagen - titulo - descripcion
-    let newSrc = newSrcParteUno + newSrcParteDos; 
+    // let newSrc = newSrcParteUno + newSrcParteDos; 
+    console.log(document.getElementById('edit-proyecto-input-img').value)
+    let newSrc = `media/${newSrcParteDos}`; 
     let newTitle = document.getElementById('edit-proyecto-input-titulo').value;
     let newDescripcion = document.getElementById('edit-proyecto-input-descripcion').value;
 
@@ -944,7 +946,7 @@ btnUpgradeProyecto.addEventListener('click',()=>{
     btnEdit.classList.add('material-icons');
     btnEdit.classList.add('material-icons-outlined');
     btnEdit.classList.add('btn-edit');
-    btnEdit.classList.add('container-hys');
+    btnEdit.classList.add('container-proyecto');
     let textoBtnEdit = document.createTextNode('edit');
     btnEdit.appendChild(textoBtnEdit);
     boxEdit.appendChild(btnEdit);
@@ -953,14 +955,15 @@ btnUpgradeProyecto.addEventListener('click',()=>{
     btnEdit.addEventListener('click',()=>{
         let boxPadreAEditar = btnEdit.parentNode.parentNode;
 
-        let valorStyle = boxPadreAEditar.children[2].children[0].children[0].getAttribute('style');
-        console.log(valorStyle)
-        let porcentajeValor = valorStyle.match(/\d+/);
+        let valorSrc = boxPadreAEditar.children[1].children[0].getAttribute('src');
+        // let lastSlashInputImg = valorSrc.lastIndexOf('\\');    //Index del ultimo \
 
-        console.log(porcentajeValor[0])
+
+        // console.log(valorSrc)
         let datos = {
-            name: boxPadreAEditar.children[1].textContent,
-            porcentaje: Number(porcentajeValor)
+            srcImagen: valorSrc,
+            titulo: boxPadreAEditar.children[2].children[0].textContent,
+            descripcion: boxPadreAEditar.children[2].children[1].textContent
         }
 
         // Creo la ventana modal
@@ -996,7 +999,7 @@ btnUpgradeProyecto.addEventListener('click',()=>{
         })
 
         // Creacion de box y sus inputs
-        function creadorBoxInputs(id, nameLabel,value){
+        function creadorBoxInputs(id, nameLabel,type,value){
 
             // Box container
             let box = document.createElement('DIV');
@@ -1018,27 +1021,46 @@ btnUpgradeProyecto.addEventListener('click',()=>{
             let input = document.createElement('INPUT');
             input.classList.add('input-modal');
             input.setAttribute('id',`name-input-${id}`);
-            input.setAttribute('type',`text`);
+            input.setAttribute('type',`${type}`);
             input.setAttribute('value',`${value}`);
             box.appendChild(input);
             
         }
-        creadorBoxInputs('name-skill','Skill: ', datos.name);
-        creadorBoxInputs('porcentaje-skill','Porcentaje: ', datos.porcentaje);
+        creadorBoxInputs('src-foto','Imagen: ','file', datos.srcImagen);
+        creadorBoxInputs('titulo-proyecto','Titulo: ','text', datos.titulo);
+        creadorBoxInputs('descripcion-proyecto','Descripcion: ','text', datos.descripcion);
 
         // Boton
         let boton = document.createElement('INPUT');
         boton.classList.add('form-login-btn');
-        boton.setAttribute('id','name-boton-edit-hys');
+        boton.setAttribute('id','name-boton-edit-proyecto');
         boton.setAttribute('type','button');
         boton.setAttribute('value','Editar');
         formulario.appendChild(boton);
 
         boton.addEventListener('click',()=>{
-            boxPadreAEditar.children[1].innerHTML = document.getElementById('name-input-name-skill').value;
-            boxPadreAEditar.children[2].children[0].children[0].style.width = document.getElementById('name-input-porcentaje-skill').value + '%';
-            // ventanaModal.classList.remove('modal-ventana-active');
-            ventanaModal.remove();
+
+            let valorInputImg = String(document.getElementById('name-input-src-foto').value);
+            if(valorInputImg === ''){
+                valorInputImg = valorSrc;
+                let indexSlash = valorInputImg.lastIndexOf('\\');
+
+                boxPadreAEditar.children[1].children[0].src = `${valorInputImg.slice(indexSlash + 1, valorInputImg.length)}`;
+                boxPadreAEditar.children[2].children[0].innerHTML = document.getElementById('name-input-titulo-proyecto').value;
+                boxPadreAEditar.children[2].children[1].innerHTML = document.getElementById('name-input-descripcion-proyecto').value;
+                // ventanaModal.classList.remove('modal-ventana-active');
+                ventanaModal.remove();
+            }else{
+                let indexSlash = valorInputImg.lastIndexOf('\\');
+    
+                boxPadreAEditar.children[1].children[0].src = `media/${valorInputImg.slice(indexSlash + 1, valorInputImg.length)}`;
+                boxPadreAEditar.children[2].children[0].innerHTML = document.getElementById('name-input-titulo-proyecto').value;
+                boxPadreAEditar.children[2].children[1].innerHTML = document.getElementById('name-input-descripcion-proyecto').value;
+                // ventanaModal.classList.remove('modal-ventana-active');
+                ventanaModal.remove();
+            }
+            // console.log(valorInputImg)
+            // let getSrc = document.getElementById('name-input-src-foto').getAttribute('src');
         })
     })
 
