@@ -896,3 +896,202 @@ let activarBtnsEditHys = ()=> {
     }
 
 }
+
+
+// ---------------------------------------------- PROYECTOS ----------------------------------------------
+
+let btnAddProyecto = document.getElementById('btn-proyecto-add');
+let btnCloseAddProyecto = document.getElementById('btn-edit-proyecto-close');
+let btnUpgradeProyecto = document.getElementById('edit-proyecto-btn');
+
+btnAddProyecto.addEventListener('click',()=>{
+    document.getElementById('modal-edit-proyecto').classList.toggle('modal-ventana-active');
+})
+
+btnCloseAddProyecto.addEventListener('click',()=>{
+    document.getElementById('modal-edit-proyecto').classList.toggle('modal-ventana-active');
+})
+
+btnUpgradeProyecto.addEventListener('click',()=>{
+    let valorInputImg = String(document.getElementById('edit-proyecto-input-img').value);
+    let lastSlashInputImg = valorInputImg.lastIndexOf('\\');    //Index del ultimo \
+    let lastSlashSrcImgActual = String(document.getElementById('perfil-foto').src).lastIndexOf('/');
+    let newSrcParteUno = String(document.getElementById('perfil-foto').src).slice(0, lastSlashSrcImgActual + 1);
+    let newSrcParteDos = valorInputImg.slice(lastSlashInputImg + 1, valorInputImg.length);
+
+    // Valor de SRC de la imagen - titulo - descripcion
+    let newSrc = newSrcParteUno + newSrcParteDos; 
+    let newTitle = document.getElementById('edit-proyecto-input-titulo').value;
+    let newDescripcion = document.getElementById('edit-proyecto-input-descripcion').value;
+
+    // Creamos el nuevo elemento
+    // Guardamos el elemento padre general
+    let boxSeccion = document.getElementById('container-proyecto');
+
+    // Creamos la caja que lo contiene
+    let box = document.createElement('A');
+    box.classList.add('card-proyecto');
+    // box.setAttribute('href','#');
+    boxSeccion.appendChild(box);
+
+    // Contenedor de botones de edit
+    let boxEdit = document.createElement('DIV');
+    boxEdit.classList.add('box-edit');
+    box.appendChild(boxEdit);
+
+    // boton edit
+    let btnEdit = document.createElement('SPAN');
+    btnEdit.classList.add('material-icons');
+    btnEdit.classList.add('material-icons-outlined');
+    btnEdit.classList.add('btn-edit');
+    btnEdit.classList.add('container-hys');
+    let textoBtnEdit = document.createTextNode('edit');
+    btnEdit.appendChild(textoBtnEdit);
+    boxEdit.appendChild(btnEdit);
+
+    // Funcion boton edit (modificar!!! ########################################################################)
+    btnEdit.addEventListener('click',()=>{
+        let boxPadreAEditar = btnEdit.parentNode.parentNode;
+
+        let valorStyle = boxPadreAEditar.children[2].children[0].children[0].getAttribute('style');
+        console.log(valorStyle)
+        let porcentajeValor = valorStyle.match(/\d+/);
+
+        console.log(porcentajeValor[0])
+        let datos = {
+            name: boxPadreAEditar.children[1].textContent,
+            porcentaje: Number(porcentajeValor)
+        }
+
+        // Creo la ventana modal
+        let ventanaModal = document.createElement('DIV');
+        ventanaModal.classList.add('modal-ventana');
+        ventanaModal.classList.add('modal-ventana-active');
+        document.getElementsByTagName('body')[0].appendChild(ventanaModal);       
+
+        // Creo el formulario de edicion
+        let formulario = document.createElement('FORM');
+        formulario.classList.add('form-login');
+        formulario.classList.add('form-edit');
+        ventanaModal.appendChild(formulario);
+
+        // Creacion de titulo
+        let titulo = document.createElement('H2');
+        titulo.classList.add('form-login-title')
+        let textoTitulo = document.createTextNode('Modo edicion!');
+        titulo.appendChild(textoTitulo);
+        formulario.appendChild(titulo);
+
+        // Creacion de boton close
+        let btnCerrar = document.createElement('I');
+        btnCerrar.classList.add('fa-solid');
+        btnCerrar.classList.add('fa-xmark');
+        btnCerrar.classList.add('modal-close-btn');
+        formulario.appendChild(btnCerrar);
+
+        // Evento boton close
+        btnCerrar.addEventListener('click', ()=>{
+            ventanaModal.classList.remove('modal-ventana-active');
+            ventanaModal.remove();
+        })
+
+        // Creacion de box y sus inputs
+        function creadorBoxInputs(id, nameLabel,value){
+
+            // Box container
+            let box = document.createElement('DIV');
+            box.classList.add('modal-box');   
+            box.classList.add('user-box');   
+            box.classList.add('modal-box-edit');
+            formulario.appendChild(box);
+            
+            // Label
+            let label = document.createElement('LABEL');
+            label.classList.add('label-modal');
+            label.setAttribute('for',`name-input-${id}`);
+            label.setAttribute('id',`name-label-${id}`);
+            let textoLabel = document.createTextNode(`${nameLabel}`);
+            label.appendChild(textoLabel);
+            box.appendChild(label);
+
+            // Input
+            let input = document.createElement('INPUT');
+            input.classList.add('input-modal');
+            input.setAttribute('id',`name-input-${id}`);
+            input.setAttribute('type',`text`);
+            input.setAttribute('value',`${value}`);
+            box.appendChild(input);
+            
+        }
+        creadorBoxInputs('name-skill','Skill: ', datos.name);
+        creadorBoxInputs('porcentaje-skill','Porcentaje: ', datos.porcentaje);
+
+        // Boton
+        let boton = document.createElement('INPUT');
+        boton.classList.add('form-login-btn');
+        boton.setAttribute('id','name-boton-edit-hys');
+        boton.setAttribute('type','button');
+        boton.setAttribute('value','Editar');
+        formulario.appendChild(boton);
+
+        boton.addEventListener('click',()=>{
+            boxPadreAEditar.children[1].innerHTML = document.getElementById('name-input-name-skill').value;
+            boxPadreAEditar.children[2].children[0].children[0].style.width = document.getElementById('name-input-porcentaje-skill').value + '%';
+            // ventanaModal.classList.remove('modal-ventana-active');
+            ventanaModal.remove();
+        })
+    })
+
+    // boton delete
+    let btnDelete = document.createElement('SPAN');
+    btnDelete.classList.add('material-icons');
+    btnDelete.classList.add('material-icons-outlined');
+    btnDelete.classList.add('btn-delete');
+    btnDelete.classList.add('btn-delete-hys');
+    let textoBtnDelete = document.createTextNode('cancel');
+    btnDelete.appendChild(textoBtnDelete);
+    boxEdit.appendChild(btnDelete);
+
+    // Funcion boton delete
+    btnDelete.addEventListener('click', ()=>{
+        let boxPadreAEliminar = btnDelete.parentNode.parentNode;
+        boxPadreAEliminar.remove();
+    })
+
+    // Creamos CARD TOP
+    let cardTopBox = document.createElement('DIV');
+    cardTopBox.classList.add('card-top');
+    box.appendChild(cardTopBox);
+    
+    let cardTopContent = document.createElement('IMG');
+    cardTopContent.classList.add('card-img');
+    cardTopContent.setAttribute('src', newSrc);
+    cardTopContent.setAttribute('alt', `Imagen representativa de proyecto: ${newTitle}`);
+    cardTopBox.appendChild(cardTopContent);
+
+    // Creamos CARD BOTTOM
+    let cardBottomBox = document.createElement('DIV');
+    cardBottomBox.classList.add('card-bottom');
+    box.appendChild(cardBottomBox);
+
+    let cardBottomTitle = document.createElement('H3');
+    let cardBottomTitleText = document.createTextNode(newTitle);
+    cardBottomTitle.appendChild(cardBottomTitleText);
+    cardBottomTitle.classList.add('card-title');
+    cardBottomBox.appendChild(cardBottomTitle);
+    
+    let cardBottomDescripcion = document.createElement('P');
+    let cardBottomDescripcionText = document.createTextNode(newDescripcion);
+    cardBottomDescripcion.appendChild(cardBottomDescripcionText);
+    cardBottomDescripcion.classList.add('card-description');
+    cardBottomBox.appendChild(cardBottomDescripcion);
+
+    // Vaciamos los inputs
+    document.getElementById('edit-proyecto-input-img').value = '';
+    document.getElementById('edit-proyecto-input-titulo').value = '';
+    document.getElementById('edit-proyecto-input-descripcion').value = '';
+
+    // Cerramos ventana modal
+    document.getElementById('modal-edit-proyecto').classList.toggle('modal-ventana-active');
+
+})

@@ -340,7 +340,7 @@ body {
     top: 37px;
 }
 
-.proyectos > .edit-btn {
+.proyecto > .edit-btn {
     top: 37px;
 } */
 
@@ -414,7 +414,8 @@ body {
     margin-left: 1rem;
 }
 
-.box-seccion .box-edit {
+.box-seccion .box-edit,
+.card-proyecto .box-edit {
     position: absolute;
     right: 10px;
     top: 0;
@@ -510,6 +511,7 @@ body {
     box-shadow: 0 0 5px #1115;
     border-radius: 1rem;
     transition: all .2s ease;
+    position: relative;
 }
 
 .card-proyecto:hover {
@@ -654,7 +656,7 @@ body {
         grid-template-columns: 2fr 4fr;
     }
 
-    .proyectos .container-seccion {
+    .proyecto .container-seccion {
         grid-template-columns: repeat(3, 1fr);
     }
     
