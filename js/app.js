@@ -236,6 +236,7 @@ let setBoxSection = function(seccion, idPrimeroIzq, idSegundoIzq, idPrimeroDcha,
     // Contenedor de botones de edit
     let boxEdit = document.createElement('DIV');
     boxEdit.classList.add('box-edit');
+    boxEdit.classList.add('box-edit-flex');
     boxSeccion.appendChild(boxEdit);
 
     // boton edit
@@ -335,6 +336,19 @@ let setBoxSection = function(seccion, idPrimeroIzq, idSegundoIzq, idPrimeroDcha,
 let btnAddExperiencia = document.getElementById('btn-experiencia-add');
 let btnCloseAddExperiencia = document.getElementById('btn-edit-experiencia-close');
 let btnUpgradeExperiencia = document.getElementById('edit-experiencia-btn');
+
+// NUEVO
+let btnActivarEditExperiencia = document.getElementById('btn-experiencia-main');
+btnActivarEditExperiencia.addEventListener('click',()=>{
+    document.getElementById('btn-experiencia-add').classList.toggle('edit-btn-add-block');
+
+    let elementos = document.querySelectorAll('.experiencia .container-seccion .box-seccion')
+    for(let i = 0; i < elementos.length; i++){
+        elementos[i].children[0].classList.toggle('box-edit-flex')
+    }
+})
+// NUEVO
+
 
 btnAddExperiencia.addEventListener('click',()=>{
     document.getElementById('modal-edit-experiencia').classList.toggle('modal-ventana-active');
@@ -481,6 +495,18 @@ btnUpgradeEducacion.addEventListener('click',()=>{
     setBoxSection('educacion','new-input-educacion-fecha','new-input-educacion-instituto','new-input-educacion-titulo','new-input-educacion-descripcion', 'orderEducacion');
 
 })
+
+// NUEVO
+let btnActivarEditEducacion = document.getElementById('btn-educacion-main');
+btnActivarEditEducacion.addEventListener('click',()=>{
+    document.getElementById('btn-educacion-add').classList.toggle('edit-btn-add-block');
+
+    let elementos = document.querySelectorAll('.educacion .container-seccion .box-seccion')
+    for(let i = 0; i < elementos.length; i++){
+        elementos[i].children[0].classList.toggle('box-edit-flex')
+    }
+})
+// NUEVO
 
 // ---------------------------------------------- FUNCION BOTON EDITAR ----------------------------------------------
 
@@ -633,6 +659,7 @@ btnUpgradeHys.addEventListener('click',()=>{
     // Contenedor de botones de edit
     let boxEdit = document.createElement('DIV');
     boxEdit.classList.add('box-edit');
+    boxEdit.classList.add('box-edit-flex');
     boxSeccion.appendChild(boxEdit);
 
     // boton edit
@@ -897,6 +924,17 @@ let activarBtnsEditHys = ()=> {
 
 }
 
+// NUEVO
+let btnActivarEditHys = document.getElementById('btn-hys-main');
+btnActivarEditHys.addEventListener('click',()=>{
+    document.getElementById('btn-hys-add').classList.toggle('edit-btn-add-block');
+
+    let elementos = document.querySelectorAll('.hys .container-seccion .box-seccion')
+    for(let i = 0; i < elementos.length; i++){
+        elementos[i].children[0].classList.toggle('box-edit-flex')
+    }
+})
+// NUEVO
 
 // ---------------------------------------------- PROYECTOS ----------------------------------------------
 
@@ -939,6 +977,7 @@ btnUpgradeProyecto.addEventListener('click',()=>{
     // Contenedor de botones de edit
     let boxEdit = document.createElement('DIV');
     boxEdit.classList.add('box-edit');
+    boxEdit.classList.add('box-edit-flex');
     box.appendChild(boxEdit);
 
     // boton edit
@@ -1117,3 +1156,15 @@ btnUpgradeProyecto.addEventListener('click',()=>{
     document.getElementById('modal-edit-proyecto').classList.toggle('modal-ventana-active');
 
 })
+
+// NUEVO
+let btnActivarEditProyecto = document.getElementById('btn-proyecto-main');
+btnActivarEditProyecto.addEventListener('click',()=>{
+    document.getElementById('btn-proyecto-add').classList.toggle('edit-btn-add-block');
+
+    let elementos = document.querySelectorAll('.proyecto .container-seccion .card-proyecto')
+    for(let i = 0; i < elementos.length; i++){
+        elementos[i].children[0].classList.toggle('box-edit-flex')
+    }
+})
+// NUEVO

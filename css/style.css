@@ -309,10 +309,15 @@ body {
 }
 
 .edit-btn-add {
+    display: none;
     right: 15%;
     font-size: 4rem;
     border: none;
     color: #20a925;
+}
+
+.edit-btn-add-block {
+    display: block;
 }
 
 .edit-btn-add:hover {
@@ -420,12 +425,18 @@ body {
     right: 10px;
     top: 0;
     width: 40%;
-    display: flex;
+    /* display: flex; */
+    display: none;
     justify-content: space-between;
     align-items: center;
     background-color: #eee9;
     padding: .7rem 2rem;
     border-radius: .5rem;
+}
+
+.box-seccion > div.box-edit-flex,
+.card-proyecto > div.box-edit-flex  {
+    display: flex;
 }
 
 .box-edit > .btn-edit {
