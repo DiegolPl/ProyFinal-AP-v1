@@ -14,12 +14,13 @@ btnMenu.addEventListener('click', ()=> {
 
 // ---------------------------------------------- LOGIN - MODAL ----------------------------------------------
 
-
 let btnLogin = document.getElementById('btn-login');
+// let btnLogin = document.getElementsByClassName('btn-login-activador')[0];
 let modalLogin = document.getElementById('modal-login');
 let btnModalClose = document.getElementById('modal-close-btn');
 let inputUser = document.getElementById('user-input');
 let inputPass = document.getElementById('pass-input');
+let btnSetLogin = document.getElementById('form-login-btn');
 
 btnLogin.addEventListener('click', ()=> {
     modalLogin.classList.toggle('modal-ventana-active');
@@ -36,6 +37,7 @@ btnModalClose.addEventListener('click',()=> {
     document.getElementById('label-login-pass').classList.remove('label-top');
 })
 
+// Evito que baje el label de los inputs
 inputUser.addEventListener('keyup',()=>{
     console.log(inputUser.value.length);
     if(inputUser.value.length > 0){
@@ -52,6 +54,10 @@ inputPass.addEventListener('keyup',()=>{
     }else{
         document.getElementById('label-login-pass').classList.remove('label-top');
     }
+})
+
+btnSetLogin.addEventListener('click',()=>{
+    login();
 })
 
 

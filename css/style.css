@@ -290,6 +290,7 @@ body {
 }
 
 .edit-btn {
+    display: none;
     position: absolute;
     transform: translateY(-50%);
     right: 5%;
@@ -302,6 +303,15 @@ body {
     padding: .4rem;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.d-block {
+    display: block;
+}
+
+.navbar a.d-none,
+.d-none {
+    display: none;
 }
 
 .edit-btn:hover {
