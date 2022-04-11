@@ -16,6 +16,8 @@ function login(){
         document.getElementById('btn-logout').classList.toggle('d-none');
         document.getElementById('btn-logout').classList.toggle('d-block');
 
+        document.querySelectorAll('A').forEach(el => el.classList.add('pointer-event-none'));
+
     }else{
         alert('Usuario o password incorrectas');
     }
@@ -26,6 +28,9 @@ document.getElementById('btn-logout').addEventListener('click',()=>{
     document.getElementById('btn-login').classList.toggle('d-none');
     document.getElementById('btn-logout').classList.toggle('d-none');
     document.getElementById('btn-logout').classList.toggle('d-block');
+
+    document.querySelectorAll('A').forEach(el => el.classList.remove('pointer-event-none'));
+
 
 })
 
